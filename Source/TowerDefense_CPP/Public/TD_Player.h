@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "InputAction.h"
+#include "DragAndDrop/DADObject.h"
 #include "GameFramework/Pawn.h"
 #include "TD_Player.generated.h"
 
@@ -25,7 +26,13 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
 	UInputAction* IA_LeftClick;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
+    UInputAction* IA_G_GrabeMode;
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<ADADObject> TestSpawnDADObject;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -38,4 +45,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void LeftClick(const FInputActionInstance& Instance);
+	void GrabMode(const FInputActionInstance& Instance);
+	
+private:
+    bool isGrabMode;
 };
