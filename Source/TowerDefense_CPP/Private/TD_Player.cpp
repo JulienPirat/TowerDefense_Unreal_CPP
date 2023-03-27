@@ -3,6 +3,10 @@
 
 #include "TD_Player.h"
 
+#include "DragAndDrop/DADObject.h"
+#include "Components/InputComponent.h"
+#include "EnhancedInputComponent.h"
+
 // Sets default values
 ATD_Player::ATD_Player()
 {
@@ -30,4 +34,12 @@ void ATD_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	UEnhancedInputComponent* Input = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+	// You can bind to any of the trigger events here by changing the "ETriggerEvent" enum value
+	Input->BindAction(IA_LeftClick, ETriggerEvent::Triggered, this, &ATD_Player::LeftClick);
 }
+
+void ATD_Player::LeftClick(const FInputActionInstance& Instance)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("ICI 1"));
+} 

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InputAction.h"
 #include "GameFramework/Pawn.h"
 #include "TD_Player.generated.h"
 
@@ -23,7 +24,7 @@ public:
 	UInputMappingContext* InputMappingContext;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
-	UInputAction* LeftClick;
+	UInputAction* IA_LeftClick;
 
 protected:
 	// Called when the game starts or when spawned
@@ -36,4 +37,5 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void LeftClick(const FInputActionInstance& Instance);
 };
