@@ -30,6 +30,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
     UInputAction* IA_G_GrabeMode;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
+	UInputAction* IA_LeftClick_Grabe;
+
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<ADADObject> TestSpawnDADObject;
 	
@@ -46,7 +49,9 @@ public:
 
 	void LeftClick(const FInputActionInstance& Instance);
 	void GrabMode(const FInputActionInstance& Instance);
+	void LeftClickGrab(const FInputActionInstance& Instance);
 	
 private:
     bool isGrabMode;
+	bool isLeftClickGrab;
 };
