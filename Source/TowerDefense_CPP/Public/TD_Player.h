@@ -50,6 +50,9 @@ public:
 	void LeftClick(const FInputActionInstance& Instance);
 	void GrabMode(const FInputActionInstance& Instance);
 	void LeftClickGrab(const FInputActionInstance& Instance);
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	bool canPutTower;
 	
 private:
     bool isGrabMode;
