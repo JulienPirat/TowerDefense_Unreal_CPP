@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/BoxComponent.h"
 #include "Components/WidgetInteractionComponent.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/Pawn.h"
@@ -12,7 +13,7 @@ UCLASS()
 class TOWERDEFENSE_CPP_API ADADObject : public APawn
 {
 	GENERATED_BODY()
-
+	
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* MeshComponent;
 
@@ -42,4 +43,5 @@ public:
 private:
 
 	FVector InitialPosition;
+	APlayerController* playerController;
 };

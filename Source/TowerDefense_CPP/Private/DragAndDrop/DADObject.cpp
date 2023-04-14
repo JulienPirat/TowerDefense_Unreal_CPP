@@ -3,6 +3,7 @@
 
 #include "DragAndDrop/DADObject.h"
 
+#include "DiffUtils.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/WidgetInteractionComponent.h"
 #include "Components/WidgetComponent.h"
@@ -12,7 +13,7 @@ ADADObject::ADADObject()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	
 	// Configure le Mesh Component
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("MeshComponent");
 	RootComponent = MeshComponent;
@@ -28,6 +29,7 @@ void ADADObject::BeginPlay()
 {
 	Super::BeginPlay();
 	isActive = true;
+	playerController = UGameplayStatics::GetPlayerController(GetWorld(),0);
 }
 
 // Called every frame
@@ -35,6 +37,16 @@ void ADADObject::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if(isActive)
+	{
+		FHitResult OutResult;
+		if(playerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility,true, OutResult))
+		{
+			auto EndLocation = OutResult.Location;
+			EndLocation.Z += 50;
+			SetActorLocation(EndLocation);
+		}
+	}
 }
 
 // Called to bind functionality to input
