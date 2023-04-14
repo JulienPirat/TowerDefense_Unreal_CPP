@@ -9,8 +9,8 @@ public class TowerDefense_CPP : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "UMG", "EnhancedInput" });
-
-		PrivateDependencyModuleNames.AddRange(new string[] {  });
+		
+		PrivateDependencyModuleNames.AddRange(new string[]{"AIModule", "NavigationSystem", "GameplayTasks"});
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
