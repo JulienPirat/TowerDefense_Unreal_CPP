@@ -48,13 +48,18 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void LeftClick(const FInputActionInstance& Instance);
-	void GrabMode(const FInputActionInstance& Instance);
 	void LeftClickGrab(const FInputActionInstance& Instance);
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	bool canPutTower;
+
+	UFUNCTION(BlueprintCallable)
+	void CreateDADObject();
+
+	UFUNCTION(BlueprintCallable)
+	void DestroyDADObject();
 	
 private:
-    bool isGrabMode;
 	bool isLeftClickGrab;
+	ADADObject* TempGrab;
 };

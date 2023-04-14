@@ -18,11 +18,16 @@ class TOWERDEFENSE_CPP_API ADADObject : public APawn
 
 	UPROPERTY(EditAnywhere)
 	UWidgetInteractionComponent* WidgetInteraction;
+
+	
 	
 public:
 	// Sets default values for this pawn's properties
 	ADADObject();
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool isActive;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -37,6 +42,4 @@ public:
 private:
 
 	FVector InitialPosition;
-	void OnLeftClick();
-	void OnLeftClickReleased();
 };
