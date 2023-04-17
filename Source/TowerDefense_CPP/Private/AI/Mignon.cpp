@@ -27,7 +27,7 @@ AMignon::AMignon()
 void AMignon::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	Damage = 1;
 }
 
 // Called every frame

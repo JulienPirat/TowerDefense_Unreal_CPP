@@ -103,4 +103,13 @@ void ATD_Player::DestroyDADObject()
 {
 	TempGrab->Destroy();
 	canPutTower = true;
+}
+
+void ATD_Player::TookDamage(int value)
+{
+	this->Life -= value;
+	if(Life<= 0)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Player is Dead"));	
+	}
 } 

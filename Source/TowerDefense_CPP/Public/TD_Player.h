@@ -61,6 +61,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void DestroyDADObject();
+
+	UFUNCTION(BlueprintCallable)
+	void TookDamage(int value);
 	
 private:
 	bool isLeftClickGrab;

@@ -28,7 +28,10 @@ public:
 	
 	UPROPERTY(Category = Pawn, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UPawnMovementComponent> MovementComponent;
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stat")
+	int Damage;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
