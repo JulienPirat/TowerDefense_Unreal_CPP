@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "MignonController.h"
+#include "Components/BoxComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Mignon.generated.h"
 
@@ -19,6 +20,14 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category="AI")
 	AMignonController* AIController;
 
+	UPROPERTY(EditAnywhere)
+	UBoxComponent* BoxCollision;
+	
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* MeshComponent;
+	
+	UPROPERTY(Category = Pawn, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UPawnMovementComponent> MovementComponent;
 
 protected:
 	// Called when the game starts or when spawned

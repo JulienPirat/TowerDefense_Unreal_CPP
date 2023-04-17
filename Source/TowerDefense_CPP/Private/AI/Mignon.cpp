@@ -3,12 +3,24 @@
 
 #include "AI/Mignon.h"
 
+#include "GameFramework/FloatingPawnMovement.h"
+
 
 // Sets default values
 AMignon::AMignon()
 {
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	BoxCollision = CreateDefaultSubobject<UBoxComponent>("BoxCollision");
+	RootComponent = BoxCollision;
+
+	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("MeshComponent");
+	MeshComponent->SetupAttachment(BoxCollision);
+
+	// Create Movement Component for the Player
+	MovementComponent = CreateDefaultSubobject<UPawnMovementComponent, UFloatingPawnMovement>(TEXT("MovementComponent"));
+	MovementComponent->UpdatedComponent = RootComponent;
 }
 
 // Called when the game starts or when spawned
