@@ -20,7 +20,7 @@ class TOWERDEFENSE_CPP_API ADADObject : public APawn
 	UPROPERTY(EditAnywhere)
 	UWidgetInteractionComponent* WidgetInteraction;
 
-	
+
 	
 public:
 	// Sets default values for this pawn's properties

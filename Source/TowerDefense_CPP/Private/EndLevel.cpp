@@ -25,7 +25,7 @@ AEndLevel::AEndLevel()
 void AEndLevel::BeginPlay()
 {
 	Super::BeginPlay();
-
+	// Bind function OnActorBeginOverlap with your class function OnOverlap
 	this->OnActorBeginOverlap.AddDynamic(this, &AEndLevel::OnOverlap);
 }
 
@@ -37,7 +37,6 @@ void AEndLevel::Tick(float DeltaTime)
 
 void AEndLevel::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Player is Dead"));	
 	if (auto Mignon = Cast<AMignon>(OtherActor)) {
 		auto APlayer = UGameplayStatics::GetActorOfClass(GetWorld(),ATD_Player::StaticClass());
 		if(IsValid(APlayer))
@@ -48,6 +47,4 @@ void AEndLevel::OnOverlap(AActor* MyActor, AActor* OtherActor)
 			}
 		}
 	}
-	
-	
 }
