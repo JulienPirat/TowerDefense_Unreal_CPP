@@ -35,6 +35,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<ADADObject> TestSpawnDADObject;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stat")
+	int Life;
 	
 protected:
 	// Called when the game starts or when spawned

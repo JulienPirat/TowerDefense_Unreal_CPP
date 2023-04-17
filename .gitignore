@@ -2,6 +2,9 @@
 .vs/
 .idea/
 
+# Ressource externe comme les sprites
+ExternalSources/
+
 # Compiled Object files
 *.slo
 *.lo

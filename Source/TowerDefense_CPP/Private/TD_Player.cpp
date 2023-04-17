@@ -23,7 +23,8 @@ ATD_Player::ATD_Player()
 void ATD_Player::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	Life = 100;
 }
 
 // Called every frame
