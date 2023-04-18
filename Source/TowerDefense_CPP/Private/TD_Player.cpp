@@ -52,7 +52,7 @@ void ATD_Player::LeftClick(const FInputActionInstance& Instance)
 		{
 			if(IsValid(TempGrab))
 			{
-				TempGrab->isActive = false;
+				TempGrab->SetIsActive(false);
 				TempGrab = NULL;
 				canPutTower = true;
 			}
@@ -62,7 +62,7 @@ void ATD_Player::LeftClick(const FInputActionInstance& Instance)
 	}else
 	{
 		// SI GRAB
-		TempGrab->isActive = false;
+		TempGrab->SetIsActive(false);
 		TempGrab = NULL;
 		isLeftClickGrab = false;
 	}
@@ -79,7 +79,7 @@ void ATD_Player::LeftClickGrab(const FInputActionInstance& Instance)
 	{
 		if(auto DADObj = Cast<ADADObject>(OutResult.GetActor()))
 		{
-			DADObj->isActive = true;
+			DADObj->SetIsActive(true);
 			TempGrab = DADObj;
 			isLeftClickGrab = true;
 		}

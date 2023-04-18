@@ -41,7 +41,7 @@ void ADADObject::FireProjectile()
 void ADADObject::BeginPlay()
 {
 	Super::BeginPlay();
-	isActive = true;
+	SetIsActive(true);
 	playerController = UGameplayStatics::GetPlayerController(GetWorld(),0);
 }
 
@@ -67,4 +67,10 @@ void ADADObject::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+void ADADObject::SetIsActive(bool value)
+{
+	isActive = value;
+	AreaCanFire->SetVisibility(value);
 }
