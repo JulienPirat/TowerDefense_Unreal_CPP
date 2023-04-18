@@ -25,6 +25,8 @@ public:
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* EmptyMesh;
 
+	UFUNCTION(BlueprintCallable)
+	void destroyProjectile();
 
 protected:
 	// Called when the game starts or when spawned
@@ -33,4 +35,6 @@ protected:
 private:
 	UFUNCTION()
 		void OnOverlap(AActor* MyActor, AActor* OtherActor);
+
+	
 };

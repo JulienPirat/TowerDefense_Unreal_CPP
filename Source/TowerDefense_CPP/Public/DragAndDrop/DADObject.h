@@ -19,6 +19,9 @@ class TOWERDEFENSE_CPP_API ADADObject : public APawn
 	UStaticMeshComponent* MeshComponent;
 
 	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* AreaCanFire;
+	
+	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* BarrelMesh;
 
 	UPROPERTY(EditAnywhere)

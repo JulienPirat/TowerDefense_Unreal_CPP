@@ -22,6 +22,10 @@ ADADObject::ADADObject()
 	BarrelMesh = CreateDefaultSubobject<UStaticMeshComponent>("BarrelMesh");
 	BarrelMesh->SetupAttachment(MeshComponent);
 
+	// Configure le Mesh Component
+	AreaCanFire = CreateDefaultSubobject<UStaticMeshComponent>("AreaCanFire");
+	AreaCanFire->SetupAttachment(MeshComponent);
+
 	// Configure le Widget Interaction Component
 	WidgetInteraction = CreateDefaultSubobject<UWidgetInteractionComponent>("WidgetInteraction");
 	WidgetInteraction->SetupAttachment(MeshComponent);
@@ -30,7 +34,7 @@ ADADObject::ADADObject()
 
 void ADADObject::FireProjectile()
 {
-	GetWorld()->SpawnActor<AProjectile>(this->Projectile,GetActorLocation(), GetActorRotation());
+	auto p = GetWorld()->SpawnActor<AProjectile>(this->Projectile,GetActorLocation(), GetActorRotation());
 }
 
 // Called when the game starts or when spawned
