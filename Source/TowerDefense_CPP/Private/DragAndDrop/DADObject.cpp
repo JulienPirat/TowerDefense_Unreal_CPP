@@ -28,6 +28,11 @@ ADADObject::ADADObject()
 
 }
 
+void ADADObject::FireProjectile()
+{
+	GetWorld()->SpawnActor<AProjectile>(this->Projectile,GetActorLocation(), GetActorRotation());
+}
+
 // Called when the game starts or when spawned
 void ADADObject::BeginPlay()
 {

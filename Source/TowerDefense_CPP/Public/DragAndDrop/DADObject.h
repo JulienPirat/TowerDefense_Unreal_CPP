@@ -7,6 +7,7 @@
 #include "Components/WidgetInteractionComponent.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/Pawn.h"
+#include "Projectiles/Projectile.h"
 #include "DADObject.generated.h"
 
 UCLASS()
@@ -22,8 +23,6 @@ class TOWERDEFENSE_CPP_API ADADObject : public APawn
 
 	UPROPERTY(EditAnywhere)
 	UWidgetInteractionComponent* WidgetInteraction;
-
-
 	
 public:
 	// Sets default values for this pawn's properties
@@ -31,6 +30,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool isActive;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AProjectile> Projectile;
+
+	UFUNCTION(BlueprintCallable)
+	void FireProjectile();
 	
 protected:
 	// Called when the game starts or when spawned

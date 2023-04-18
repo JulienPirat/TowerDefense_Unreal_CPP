@@ -19,16 +19,12 @@ void ASpawner::BeginPlay()
 	Super::BeginPlay();
 
 	SpawnMob();
-
-
-
 }
 
 void ASpawner::SpawnMob()
 {
 	// Used to manage time
 	FTimerHandle TimerHandle;
-
 	auto spawnedMob = GetWorld()->SpawnActor<AMignon>(this->MobToSpawn,GetActorLocation(), FRotator(0,0,0));
 	if(IsValid(spawnedMob))
 	{
@@ -41,6 +37,7 @@ void ASpawner::SpawnMob()
 		{
 			if(NbToSpawn>0)
 			{
+				GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 				SpawnMob();
 			}
 		},  1.5f, false);
