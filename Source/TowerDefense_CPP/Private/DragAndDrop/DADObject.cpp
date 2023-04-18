@@ -18,6 +18,10 @@ ADADObject::ADADObject()
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("MeshComponent");
 	RootComponent = MeshComponent;
 
+	// Configure le Mesh Component
+	BarrelMesh = CreateDefaultSubobject<UStaticMeshComponent>("BarrelMesh");
+	BarrelMesh->SetupAttachment(MeshComponent);
+
 	// Configure le Widget Interaction Component
 	WidgetInteraction = CreateDefaultSubobject<UWidgetInteractionComponent>("WidgetInteraction");
 	WidgetInteraction->SetupAttachment(MeshComponent);
