@@ -61,15 +61,29 @@ void ADADObject::Tick(float DeltaTime)
 			{
 				if(actor->CanPlaceDADObject)
 				{
+					if(IsValid(CanPutTower))
+					{
+						AreaCanFire->SetMaterial(0,CanPutTower);
+						auto EndLocation = OutResult.Location;
+						EndLocation.Z += 50;
+						SetActorLocation(EndLocation);
+					}
+				}else
+				{
+					if(IsValid(CanNOTPutTower))
+					{
+						AreaCanFire->SetMaterial(0,CanNOTPutTower);
+					}
+				}
+			}else
+			{
+				if(IsValid(CanPutTower))
+				{
+					AreaCanFire->SetMaterial(0,CanPutTower);
 					auto EndLocation = OutResult.Location;
 					EndLocation.Z += 50;
 					SetActorLocation(EndLocation);
 				}
-			}else
-			{
-				auto EndLocation = OutResult.Location;
-				EndLocation.Z += 50;
-				SetActorLocation(EndLocation);
 			}
 		}
 	}
