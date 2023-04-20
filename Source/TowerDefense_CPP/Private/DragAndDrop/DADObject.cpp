@@ -67,12 +67,18 @@ void ADADObject::Tick(float DeltaTime)
 						auto EndLocation = OutResult.Location;
 						EndLocation.Z += 50;
 						SetActorLocation(EndLocation);
+						b_CanPutTower = true;
 					}
 				}else
 				{
 					if(IsValid(CanNOTPutTower))
 					{
+						AreaCanFire->SetMaterial(0,CanPutTower);
+						auto EndLocation = OutResult.Location;
+						EndLocation.Z += 50;
+						SetActorLocation(EndLocation);
 						AreaCanFire->SetMaterial(0,CanNOTPutTower);
+						b_CanPutTower = false;
 					}
 				}
 			}else
@@ -83,6 +89,7 @@ void ADADObject::Tick(float DeltaTime)
 					auto EndLocation = OutResult.Location;
 					EndLocation.Z += 50;
 					SetActorLocation(EndLocation);
+					b_CanPutTower = true;
 				}
 			}
 		}

@@ -59,6 +59,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetIsActive(bool value);
+
+	bool b_CanPutTower;
 	
 private:
 

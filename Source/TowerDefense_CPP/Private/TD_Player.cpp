@@ -52,9 +52,13 @@ void ATD_Player::LeftClick(const FInputActionInstance& Instance)
 		{
 			if(IsValid(TempGrab))
 			{
-				TempGrab->SetIsActive(false);
-				TempGrab = NULL;
-				canPutTower = true;
+				if(TempGrab->b_CanPutTower)
+				{
+					//Si la tower est dans un zone valide
+					TempGrab->SetIsActive(false);
+					TempGrab = NULL;
+					canPutTower = true;
+				}
 			}
 		}
 		//TODO SI touche un DADObject un menu apparait pour faire des actions
@@ -62,9 +66,12 @@ void ATD_Player::LeftClick(const FInputActionInstance& Instance)
 	}else
 	{
 		// SI GRAB
-		TempGrab->SetIsActive(false);
-		TempGrab = NULL;
-		isLeftClickGrab = false;
+		if(TempGrab->b_CanPutTower)
+		{
+			TempGrab->SetIsActive(false);
+			TempGrab = NULL;
+			isLeftClickGrab = false;
+		}
 	}
 		
 } 
