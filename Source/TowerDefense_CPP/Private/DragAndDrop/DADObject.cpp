@@ -4,6 +4,7 @@
 #include "DragAndDrop/DADObject.h"
 
 #include "DiffUtils.h"
+#include "PlacingArea.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/WidgetInteractionComponent.h"
 #include "Components/WidgetComponent.h"
@@ -34,7 +35,8 @@ ADADObject::ADADObject()
 
 void ADADObject::FireProjectile()
 {
-	auto p = GetWorld()->SpawnActor<AProjectile>(this->Projectile,GetActorLocation(), GetActorRotation());
+	if(!isActive)
+		auto p = GetWorld()->SpawnActor<AProjectile>(this->Projectile,GetActorLocation(), GetActorRotation());
 }
 
 // Called when the game starts or when spawned
@@ -55,9 +57,20 @@ void ADADObject::Tick(float DeltaTime)
 		FHitResult OutResult;
 		if(playerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility,true, OutResult))
 		{
-			auto EndLocation = OutResult.Location;
-			EndLocation.Z += 50;
-			SetActorLocation(EndLocation);
+			if(auto actor = Cast<APlacingArea>(OutResult.GetActor()))
+			{
+				if(actor->CanPlaceDADObject)
+				{
+					auto EndLocation = OutResult.Location;
+					EndLocation.Z += 50;
+					SetActorLocation(EndLocation);
+				}
+			}else
+			{
+				auto EndLocation = OutResult.Location;
+				EndLocation.Z += 50;
+				SetActorLocation(EndLocation);
+			}
 		}
 	}
 }
