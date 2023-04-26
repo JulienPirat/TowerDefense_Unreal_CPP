@@ -5,6 +5,9 @@
 # Ressource externe comme les sprites
 ExternalSources/
 
+#Builds
+BUILD/
+
 # Compiled Object files
 *.slo
 *.lo
