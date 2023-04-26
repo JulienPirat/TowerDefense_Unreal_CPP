@@ -36,7 +36,7 @@ void AProjectile::BeginPlay()
 	UKismetSystemLibrary::MoveComponentTo(SphereCollision, FVector(500, 0, 0),
 		FRotator(0.0f, 0.0f, 0.0f), false, false, 0.7f, false,EMoveComponentAction::Type::Move, LatentInfo);
 
-	//Destroy Projectile after 0.8s
+	//Destroy Projectile after 0.7s
 	FLatentActionInfo LatentActionInfo;
 	LatentActionInfo.CallbackTarget = this;
 	LatentActionInfo.ExecutionFunction = "destroyProjectile";
