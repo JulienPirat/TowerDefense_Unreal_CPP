@@ -23,10 +23,6 @@ ADADObject::ADADObject()
 	BarrelMesh = CreateDefaultSubobject<UStaticMeshComponent>("BarrelMesh");
 	BarrelMesh->SetupAttachment(MeshComponent);
 
-	// Configure la zone que peut attaquer	** Uniquement Visuel ! **
-	AreaCanFire = CreateDefaultSubobject<UStaticMeshComponent>("AreaCanFire");
-	AreaCanFire->SetupAttachment(MeshComponent);
-
 	// Configure le Widget Interaction Component ** ICI Encore jamais Utilisé ! **
 	WidgetInteraction = CreateDefaultSubobject<UWidgetInteractionComponent>("WidgetInteraction");
 	WidgetInteraction->SetupAttachment(MeshComponent);
@@ -69,9 +65,12 @@ void ADADObject::Tick(float DeltaTime)
 					if(IsValid(CanPutTower_material))
 					{
 						// Si le matérial n'est pas vide.
-						AreaCanFire->SetMaterial(0,CanPutTower_material); //Change le matériel de la zone de dégats
-						ChangeTowerPosition(OutResult.Location);
-						b_CanPutTower = true;
+						if(IsValid(TempArea))
+						{
+							UpdateAreaPosition(CanPutTower_material);
+							ChangeTowerPosition(OutResult.Location);
+							b_CanPutTower = true;
+						}
 					}
 				}else
 				{
@@ -79,9 +78,12 @@ void ADADObject::Tick(float DeltaTime)
 					if(IsValid(CanNotPutTower_material))
 					{
 						// Si le matérial n'est pas vide.
-						AreaCanFire->SetMaterial(0,CanNotPutTower_material); //Change le matériel de la zone de dégats
-						ChangeTowerPosition(OutResult.Location);
-						b_CanPutTower = false;
+						if(IsValid(TempArea))
+						{
+							UpdateAreaPosition(CanNotPutTower_material);
+							ChangeTowerPosition(OutResult.Location);
+							b_CanPutTower = false;
+						}
 					}
 				}
 			}else
@@ -90,9 +92,12 @@ void ADADObject::Tick(float DeltaTime)
 				if(IsValid(CanPutTower_material))
 				{
 					// Si le matérial n'est pas vide.
-					AreaCanFire->SetMaterial(0,CanPutTower_material); //Change le matériel de la zone de dégats
-					ChangeTowerPosition(OutResult.Location);
-					b_CanPutTower = true;
+					if(IsValid(TempArea))
+					{
+						UpdateAreaPosition(CanPutTower_material);
+						ChangeTowerPosition(OutResult.Location);
+						b_CanPutTower = true;
+					}
 				}
 			}
 		}
@@ -113,7 +118,24 @@ void ADADObject::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 void ADADObject::SetIsActive(bool value)
 {
 	isActive = value;
-	AreaCanFire->SetVisibility(value); // Affiche la zone d'attaque de la tourelle.
+	if(value)
+	{
+		if(!IsValid(TempArea))
+		{
+			TempArea = GetWorld()->SpawnActor<AAreaToFire>(this->AreaCanFire,GetActorLocation(), GetActorRotation());
+		}
+	}else
+	{
+		if(IsValid(TempArea))
+			TempArea->Destroy();
+	}
+}
+
+void ADADObject::BeforeDestroy()
+{
+	if(IsValid(TempArea))
+		TempArea->Destroy();
+	Destroy();
 }
 
 /**
@@ -125,4 +147,14 @@ void ADADObject::ChangeTowerPosition(FVector Position)
 	auto EndLocation = Position;
 	EndLocation.Z += 50;
 	SetActorLocation(EndLocation);
+}
+
+/**
+ * @brief Change la position de la zone d'attaque et son materiel
+ * @param material Matiral de la zone
+ */
+void ADADObject::UpdateAreaPosition(UMaterialInterface* material)
+{
+	TempArea->ChangeMaterial(material); //Change le matériel de la zone de dégats
+	TempArea->SetActorLocation(GetActorLocation());
 }

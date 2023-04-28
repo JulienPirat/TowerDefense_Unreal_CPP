@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AreaToFire.h"
 #include "Components/BoxComponent.h"
 #include "Components/WidgetInteractionComponent.h"
 #include "Components/WidgetComponent.h"
@@ -19,7 +20,7 @@ class TOWERDEFENSE_CPP_API ADADObject : public APawn
 	UStaticMeshComponent* MeshComponent;
 
 	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* AreaCanFire;
+	TSubclassOf<AAreaToFire> AreaCanFire;
 	
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* BarrelMesh;
@@ -71,6 +72,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetIsActive(bool value);
 
+	UFUNCTION(BlueprintCallable)
+	void BeforeDestroy();
+	
 	/**
 	 * @brief Possibilité de poser une tourelle. Utilisé dans le player.
 	 */
@@ -87,6 +91,10 @@ private:
 	 * @param Position FVector qui indique la nouvelle position de la tourelle. 
 	 */
 	void ChangeTowerPosition(FVector Position);
+
+	void UpdateAreaPosition(UMaterialInterface* material);
+	
+	AAreaToFire* TempArea;
 	
 	FVector InitialPosition;
 	APlayerController* playerController;

@@ -118,7 +118,7 @@ void ATD_Player::DestroyDADObject()
 {
 	if(!isLeftClickGrab)
 	{
-		TempGrab->Destroy(); //Détruit la tourelle temporaire
+		TempGrab->BeforeDestroy(); //Détruit la tourelle temporaire
 		canPutTower = true; // Peut faire spawn une tourelle.
 	}
 }
