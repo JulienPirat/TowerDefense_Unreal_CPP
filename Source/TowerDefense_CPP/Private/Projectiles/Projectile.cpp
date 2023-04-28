@@ -23,6 +23,8 @@ AProjectile::AProjectile()
 	// Configure le Mesh Component
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("MeshComponent");
 	MeshComponent->SetupAttachment(SphereCollision);
+
+	delayDestroyProjectile = 0.7f;
 }
 
 // Called when the game starts or when spawned
@@ -34,16 +36,8 @@ void AProjectile::BeginPlay()
 	FLatentActionInfo LatentInfo;
 	LatentInfo.CallbackTarget = this;
 	UKismetSystemLibrary::MoveComponentTo(SphereCollision, FVector(500, 0, 0),
-		FRotator(0.0f, 0.0f, 0.0f), false, false, 0.7f, false,EMoveComponentAction::Type::Move, LatentInfo);
-
-	//Destroy Projectile after 0.8s
-	FLatentActionInfo LatentActionInfo;
-	LatentActionInfo.CallbackTarget = this;
-	LatentActionInfo.ExecutionFunction = "destroyProjectile";
-	LatentActionInfo.UUID = 123;
-	LatentActionInfo.Linkage = 0;
-	
-	UKismetSystemLibrary::Delay(this, 0.7f, LatentActionInfo);
+		FRotator(0.0f, 0.0f, 0.0f), false, false, delayDestroyProjectile, false,EMoveComponentAction::Type::Move, LatentInfo);
+	DestroyProjectileWithDelay(delayDestroyProjectile);
 
 }	
 
@@ -53,6 +47,20 @@ void AProjectile::OnOverlap(AActor* MyActor, AActor* OtherActor)
 		Mignon->Destroy();
 		Destroy();
 	}
+}
+
+/**
+ * @brief Destroy Projectile after 0.7s
+ */
+void AProjectile::DestroyProjectileWithDelay(float delay)
+{
+	FLatentActionInfo LatentActionInfo;
+	LatentActionInfo.CallbackTarget = this;
+	LatentActionInfo.ExecutionFunction = "destroyProjectile";
+	LatentActionInfo.UUID = 123;
+	LatentActionInfo.Linkage = 0;
+	
+	UKismetSystemLibrary::Delay(this, delay, LatentActionInfo);
 }
 
 void AProjectile::destroyProjectile()

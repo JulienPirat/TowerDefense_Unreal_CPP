@@ -25,6 +25,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* EmptyMesh;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float delayDestroyProjectile;
+	
 	UFUNCTION(BlueprintCallable)
 	void destroyProjectile();
 
@@ -36,5 +39,5 @@ private:
 	UFUNCTION()
 		void OnOverlap(AActor* MyActor, AActor* OtherActor);
 
-	
+	void DestroyProjectileWithDelay(float delay);
 };

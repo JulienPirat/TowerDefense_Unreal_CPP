@@ -19,6 +19,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* StaticMesh;
 
+	/**
+	 * @brief True = une tourelle peut être posée, False = Une tourelle ne peut pas être posée.
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool CanPlaceDADObject;
 	

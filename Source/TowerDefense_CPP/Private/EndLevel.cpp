@@ -12,7 +12,7 @@
 AEndLevel::AEndLevel()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 	
 	BoxCollision = CreateDefaultSubobject<UBoxComponent>("BoxCollision");
 	RootComponent = BoxCollision;
@@ -25,14 +25,7 @@ AEndLevel::AEndLevel()
 void AEndLevel::BeginPlay()
 {
 	Super::BeginPlay();
-	// Bind function OnActorBeginOverlap with your class function OnOverlap
 	this->OnActorBeginOverlap.AddDynamic(this, &AEndLevel::OnOverlap);
-}
-
-// Called every frame
-void AEndLevel::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
 }
 
 void AEndLevel::OnOverlap(AActor* MyActor, AActor* OtherActor)

@@ -15,7 +15,6 @@ void ALSA_TowerDefense::BeginPlay()
 		//Find the actor that handles control for the local player.
 		APlayerController* OurPlayerController = UGameplayStatics::GetPlayerController(this, 0);
 
-		//Cut instantly to our actor on begin play.
 		OurPlayerController->SetViewTarget(MainCamera);
 		OurPlayerController->SetShowMouseCursor(true);
 	}

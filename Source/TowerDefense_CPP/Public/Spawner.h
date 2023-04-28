@@ -21,11 +21,17 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	int NbToSpawn;
+
+	UPROPERTY(EditAnywhere)
+	float DelayToSpawn;
 	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 private:
+	/**
+	 * @brief Fonction récursive jusqu'au bon nombre de mob spawn.
+	 */
 	void SpawnMob();
 };

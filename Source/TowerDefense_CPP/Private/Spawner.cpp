@@ -11,6 +11,8 @@ ASpawner::ASpawner()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+
+	DelayToSpawn = 1.5f;
 }
 
 // Called when the game starts or when spawned
@@ -21,6 +23,9 @@ void ASpawner::BeginPlay()
 	SpawnMob();
 }
 
+/**
+ * @brief Fonction récursive jusqu'au bon nombre de mob spawn.
+ */
 void ASpawner::SpawnMob()
 {
 	// Used to manage time
@@ -37,9 +42,9 @@ void ASpawner::SpawnMob()
 		{
 			if(NbToSpawn>0)
 			{
-				GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+				GetWorld()->GetTimerManager().ClearTimer(TimerHandle); //Clear le timer pour pas faire des pertes de mémoire.
 				SpawnMob();
 			}
-		},  1.5f, false);
+		},  DelayToSpawn, false);
 	}
 }

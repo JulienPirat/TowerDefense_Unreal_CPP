@@ -28,7 +28,10 @@ public:
 	
 	UPROPERTY(Category = Pawn, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UPawnMovementComponent> MovementComponent;
-	
+
+	/**
+	 * @brief Dégat du mignon fait au joueur
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stat")
 	int Damage;
 	
@@ -37,8 +40,6 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

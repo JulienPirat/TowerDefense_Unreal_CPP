@@ -27,43 +27,67 @@ class TOWERDEFENSE_CPP_API ADADObject : public APawn
 	UPROPERTY(EditAnywhere)
 	UWidgetInteractionComponent* WidgetInteraction;
 
+	/**
+	 * @brief Material pour l'areaDamage CanPutTower_material
+	 */
 	UPROPERTY(EditAnywhere)
-	UMaterialInterface* CanPutTower;
+	UMaterialInterface* CanPutTower_material;
 
+	/**
+	 * @brief Material pour l'areaDamage CanNotPutTower_material
+	 */
 	UPROPERTY(EditAnywhere)
-	UMaterialInterface* CanNOTPutTower;
+	UMaterialInterface* CanNotPutTower_material;
 	
 public:
 	// Sets default values for this pawn's properties
 	ADADObject();
 
+	/**
+	 * @brief Indique si la tour peut tirer 
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool isActive;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AProjectile> Projectile;
 
+	/**
+	 * @brief Tire un Projectile en direction du forward Vector de la tourelle
+	 */
 	UFUNCTION(BlueprintCallable)
 	void FireProjectile();
-	
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 
-public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	/**
+	 * @brief Permet de set si la tour est capable de tirer ou non. true = peut tier, false = peut pas tirer.
+	 * @param value Boolean qui active ou non la possibilité de tirer.
+	 */
 	UFUNCTION(BlueprintCallable)
 	void SetIsActive(bool value);
 
+	/**
+	 * @brief Possibilité de poser une tourelle. Utilisé dans le player.
+	 */
 	bool b_CanPutTower;
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 	
 private:
-
+	
+	/**
+	 * @brief Change la position de la tourelle
+	 * @param Position FVector qui indique la nouvelle position de la tourelle. 
+	 */
+	void ChangeTowerPosition(FVector Position);
+	
 	FVector InitialPosition;
 	APlayerController* playerController;
 };

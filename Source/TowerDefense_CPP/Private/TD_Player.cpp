@@ -14,7 +14,7 @@
 ATD_Player::ATD_Player()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
     isLeftClickGrab = false;
 	canPutTower = true;
 }
@@ -25,12 +25,6 @@ void ATD_Player::BeginPlay()
 	Super::BeginPlay();
 
 	Life = 100;
-}
-
-// Called every frame
-void ATD_Player::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
 }
 
 // Called to bind functionality to input

@@ -18,11 +18,12 @@ UBTTask_FindEndLevel::UBTTask_FindEndLevel()
 
 EBTNodeResult::Type UBTTask_FindEndLevel::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	
+	// Coeur du joueur qui contient les pts de vie du joueur
 	auto endLevel = UGameplayStatics::GetActorOfClass(GetWorld(),AEndLevel::StaticClass());
 
 	if(IsValid(endLevel))
 	{
+		//Set la variable du BB avec la location du Coeur du Joueur.
 		OwnerComp.GetAIOwner()->GetBlackboardComponent()->SetValueAsVector(BlackboardKey.SelectedKeyName, endLevel->GetActorLocation());
 	}
 

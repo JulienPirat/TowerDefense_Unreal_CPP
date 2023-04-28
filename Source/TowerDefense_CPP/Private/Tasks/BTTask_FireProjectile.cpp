@@ -17,8 +17,8 @@ UBTTask_FireProjectile::UBTTask_FireProjectile()
 EBTNodeResult::Type UBTTask_FireProjectile::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 
-	auto Mob_ = OwnerComp.GetAIOwner()->GetBlackboardComponent()->GetValueAsObject(FName("Mob"));
-	auto Tower_ = OwnerComp.GetAIOwner()->GetPawn();
+	auto Mob_ = OwnerComp.GetAIOwner()->GetBlackboardComponent()->GetValueAsObject(FName("Mob")); //Récupération du mob
+	auto Tower_ = OwnerComp.GetAIOwner()->GetPawn();	//Récupération de la tourelle
 
 	if (auto Tower = Cast<ADADObject>(Tower_))
 	{
@@ -28,7 +28,8 @@ EBTNodeResult::Type UBTTask_FireProjectile::ExecuteTask(UBehaviorTreeComponent& 
 			{
 				auto TowerLocation = Tower->GetActorLocation();
 				auto MobLocation = Mob->GetActorLocation();
-				auto NewRotation = UKismetMathLibrary::FindLookAtRotation(TowerLocation,MobLocation);
+				//Donne la rotation de la tourelle pour regarder le mob
+				auto NewRotation = UKismetMathLibrary::FindLookAtRotation(TowerLocation,MobLocation); 
 				Tower->SetActorRotation(NewRotation);
 				Tower->FireProjectile();
 			}
