@@ -26,15 +26,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
 	UInputAction* IA_LeftClick;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
-    UInputAction* IA_G_GrabeMode;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
 	UInputAction* IA_LeftClick_Grabe;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<ADADObject> TestSpawnDADObject;
+	TSubclassOf<ADADObject> DADObjectToSpawn;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stat")
 	int Life;
@@ -51,12 +48,21 @@ public:
 	void LeftClick(const FInputActionInstance& Instance);
 	void LeftClickGrab(const FInputActionInstance& Instance);
 
+	/**
+	 * @brief Indique si peut poser une tourelle (Utilisé dans le UI)
+	 */
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	bool canPutTower;
 
+	/**
+	 * @brief Création d'une tourelle (Utilisé en BP)
+	 */
 	UFUNCTION(BlueprintCallable)
 	void CreateDADObject();
 
+	/**
+	 * @brief Destruction de la tourelle temporaire (Utilisé en BP)
+	 */
 	UFUNCTION(BlueprintCallable)
 	void DestroyDADObject();
 
@@ -64,6 +70,11 @@ public:
 	void TookDamage(int value);
 	
 private:
-	bool isLeftClickGrab;
+	
+	bool isLeftClickGrab; //Si déplacement de tourelle.
+
+	/**
+	 * @brief Tourelle créer ou grab.
+	 */
 	ADADObject* TempGrab;
 };

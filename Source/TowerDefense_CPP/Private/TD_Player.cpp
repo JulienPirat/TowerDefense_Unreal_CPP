@@ -65,11 +65,16 @@ void ATD_Player::LeftClick(const FInputActionInstance& Instance)
 			TempGrab->SetIsActive(false);
 			TempGrab = NULL;
 			isLeftClickGrab = false;
+			canPutTower = true;
 		}
 	}
 		
-} 
+}
 
+/**
+ * @brief Fonction de Clique long pour déplacer une tourelle
+ * @param Instance 
+ */
 void ATD_Player::LeftClickGrab(const FInputActionInstance& Instance)
 {
 	auto playerController = UGameplayStatics::GetPlayerController(GetWorld(),0);
@@ -83,34 +88,50 @@ void ATD_Player::LeftClickGrab(const FInputActionInstance& Instance)
 			DADObj->SetIsActive(true);
 			TempGrab = DADObj;
 			isLeftClickGrab = true;
+			canPutTower = false;
 		}
 	}
 }
 
+/**
+ * @brief Spawn une tourelle.
+ */
 void ATD_Player::CreateDADObject()
 {
-			auto spawned = GetWorld()->SpawnActor<ADADObject>(this->TestSpawnDADObject,FVector(10000,10000,10000), FRotator(0,0,0));
-			if(IsValid(spawned))
-			{
-				TempGrab= spawned;
-				canPutTower = false;
-			}
-			//Ligne Pour débug
-			//DrawDebugLine(GetWorld(), CursorWorldLocation, EndVector,FColor::Red,false,5.0f,0,5.0f);
-
+	if(canPutTower)
+	{
+		auto spawned = GetWorld()->SpawnActor<ADADObject>(this->DADObjectToSpawn,FVector(10000,10000,10000), FRotator(0,0,0));
+		if(IsValid(spawned))
+		{
+			TempGrab= spawned;
+			canPutTower = false; // Ne peut pas faire spawn de tourelle.
+		}
+		//Ligne Pour débug
+		//DrawDebugLine(GetWorld(), CursorWorldLocation, EndVector,FColor::Red,false,5.0f,0,5.0f);
+	}
 }
 
+/**
+ * @brief Détruit la tourelle temporaire qui a été spawn.
+ */
 void ATD_Player::DestroyDADObject()
 {
-	TempGrab->Destroy();
-	canPutTower = true;
+	if(!isLeftClickGrab)
+	{
+		TempGrab->Destroy(); //Détruit la tourelle temporaire
+		canPutTower = true; // Peut faire spawn une tourelle.
+	}
 }
 
+/**
+ * @brief Retire des HP au joueurs.
+ * @param value HP a retirer
+ */
 void ATD_Player::TookDamage(int value)
 {
 	this->Life -= value;
 	if(Life<= 0)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Player is Dead"));	
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("TODO : Player is Dead"));	
 	}
 } 
