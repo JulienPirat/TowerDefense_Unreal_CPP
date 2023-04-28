@@ -23,6 +23,10 @@ ADADObject::ADADObject()
 	BarrelMesh = CreateDefaultSubobject<UStaticMeshComponent>("BarrelMesh");
 	BarrelMesh->SetupAttachment(MeshComponent);
 
+	// Configure le SpawnProjectile_Empty Mesh Component
+	SpawnProjectile_Empty = CreateDefaultSubobject<UStaticMeshComponent>("SpawnProjectile_Empty");
+	SpawnProjectile_Empty->SetupAttachment(MeshComponent);
+
 	// Configure le Widget Interaction Component ** ICI Encore jamais Utilisé ! **
 	WidgetInteraction = CreateDefaultSubobject<UWidgetInteractionComponent>("WidgetInteraction");
 	WidgetInteraction->SetupAttachment(MeshComponent);
@@ -35,7 +39,7 @@ ADADObject::ADADObject()
 void ADADObject::FireProjectile()
 {
 	if(!isActive)
-		auto p = GetWorld()->SpawnActor<AProjectile>(this->Projectile,GetActorLocation(), GetActorRotation());
+		auto p = GetWorld()->SpawnActor<AProjectile>(this->Projectile,SpawnProjectile_Empty->GetComponentLocation(), GetActorRotation());
 }
 
 // Called when the game starts or when spawned

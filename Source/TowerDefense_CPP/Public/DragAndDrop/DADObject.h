@@ -26,6 +26,9 @@ class TOWERDEFENSE_CPP_API ADADObject : public APawn
 	UStaticMeshComponent* BarrelMesh;
 
 	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* SpawnProjectile_Empty;
+
+	UPROPERTY(EditAnywhere)
 	UWidgetInteractionComponent* WidgetInteraction;
 
 	/**
