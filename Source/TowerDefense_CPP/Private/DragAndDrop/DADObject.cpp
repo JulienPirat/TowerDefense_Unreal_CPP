@@ -149,7 +149,7 @@ void ADADObject::BeforeDestroy()
 void ADADObject::ChangeTowerPosition(FVector Position)
 {
 	auto EndLocation = Position;
-	EndLocation.Z += 50;
+	EndLocation.Z += 25;
 	SetActorLocation(EndLocation);
 }
 
