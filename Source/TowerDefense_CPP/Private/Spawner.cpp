@@ -30,7 +30,7 @@ void ASpawner::SpawnMob()
 {
 	// Used to manage time
 	FTimerHandle TimerHandle;
-	auto spawnedMob = GetWorld()->SpawnActor<AMignon>(this->MobToSpawn,GetActorLocation(), FRotator(0,0,0));
+	auto spawnedMob = GetWorld()->SpawnActor<APawn>(this->MobToSpawn,GetActorLocation(), FRotator(0,0,0));
 	if(IsValid(spawnedMob))
 	{
 		NbToSpawn -=1;

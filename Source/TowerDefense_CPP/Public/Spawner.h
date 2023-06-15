@@ -17,7 +17,7 @@ public:
 	ASpawner();
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<AMignon> MobToSpawn;
+	TSubclassOf<APawn> MobToSpawn;
 
 	UPROPERTY(EditAnywhere)
 	int NbToSpawn;

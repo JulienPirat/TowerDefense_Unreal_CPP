@@ -24,7 +24,7 @@ EBTNodeResult::Type UBTTask_FireProjectile::ExecuteTask(UBehaviorTreeComponent& 
 	{
 		if(IsValid(Mob_))
 		{
-			if (auto Mob = Cast<AMignon>(Mob_))
+			if (auto Mob = Cast<APawn>(Mob_))
 			{
 				auto TowerLocation = Tower->GetActorLocation();
 				auto MobLocation = Mob->GetActorLocation();
