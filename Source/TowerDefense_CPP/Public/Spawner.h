@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AI/Mignon.h"
+#include "AI/TemplateEnemy.h"
 #include "GameFramework/Actor.h"
 #include "Spawner.generated.h"
 
@@ -17,7 +18,7 @@ public:
 	ASpawner();
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<APawn> MobToSpawn;
+	TSubclassOf<ATemplateEnemy> MobToSpawn;
 
 	UPROPERTY(EditAnywhere)
 	int NbToSpawn;

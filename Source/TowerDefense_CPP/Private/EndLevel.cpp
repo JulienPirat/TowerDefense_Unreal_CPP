@@ -5,6 +5,7 @@
 
 #include "TD_Player.h"
 #include "AI/Mignon.h"
+#include "AI/TemplateEnemy.h"
 #include "Kismet/GameplayStatics.h"
 
 
@@ -30,13 +31,13 @@ void AEndLevel::BeginPlay()
 
 void AEndLevel::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {
-	if (auto Mignon = Cast<AMignon>(OtherActor)) {
+	if (auto Enemy = Cast<ATemplateEnemy>(OtherActor)) {
 		auto APlayer = UGameplayStatics::GetActorOfClass(GetWorld(),ATD_Player::StaticClass());
 		if(IsValid(APlayer))
 		{
 			if (auto Player = Cast<ATD_Player>(APlayer)) {
-				Player->TookDamage(Mignon->Damage);
-				Mignon->Destroy();
+				Player->TookDamage(Enemy->Damage);
+				Enemy->Destroy();
 			}
 		}
 	}

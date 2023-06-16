@@ -4,6 +4,7 @@
 #include "Projectiles/Projectile.h"
 
 #include "AI/Mignon.h"
+#include "AI/TemplateEnemy.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 
@@ -43,8 +44,8 @@ void AProjectile::BeginPlay()
 
 void AProjectile::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {
-	if (auto Mignon = Cast<AMignon>(OtherActor)) {
-		Mignon->Destroy();
+	if (auto Enemy = Cast<ATemplateEnemy>(OtherActor)) {
+		Enemy->Destroy();
 		Destroy();
 	}
 }

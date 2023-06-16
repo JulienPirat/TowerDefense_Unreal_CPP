@@ -5,6 +5,7 @@
 
 #include "AIController.h"
 #include "AI/Mignon.h"
+#include "AI/TemplateEnemy.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "DragAndDrop/DADObject.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -24,7 +25,7 @@ EBTNodeResult::Type UBTTask_FireProjectile::ExecuteTask(UBehaviorTreeComponent& 
 	{
 		if(IsValid(Mob_))
 		{
-			if (auto Mob = Cast<APawn>(Mob_))
+			if (auto Mob = Cast<ATemplateEnemy>(Mob_))
 			{
 				auto TowerLocation = Tower->GetActorLocation();
 				auto MobLocation = Mob->GetActorLocation();
