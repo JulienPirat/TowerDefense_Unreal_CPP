@@ -11,7 +11,7 @@ AImpossibleCube::AImpossibleCube()
 {
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
-
+	
 	BoxCollision = CreateDefaultSubobject<UBoxComponent>("BoxCollision");
 	RootComponent = BoxCollision;
 
@@ -20,10 +20,7 @@ AImpossibleCube::AImpossibleCube()
 	
 	SphereMesh = CreateDefaultSubobject<UStaticMeshComponent>("SphereMesh");
 	SphereMesh->SetupAttachment(ImpossibleCubeMesh);
-
-	// Create Movement Component for the Mignon
-	MovementComponent = CreateDefaultSubobject<UPawnMovementComponent, UFloatingPawnMovement>(TEXT("MovementComponent"));
-	MovementComponent->UpdatedComponent = RootComponent;
+	
 }
 
 // Called when the game starts or when spawned
