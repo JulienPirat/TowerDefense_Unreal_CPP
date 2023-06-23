@@ -55,8 +55,35 @@ void ATD_Player::LeftClick(const FInputActionInstance& Instance)
 				}
 			}
 		}
-		//TODO SI touche un DADObject un menu apparait pour faire des actions
+		else
+		{
+			auto playerController = UGameplayStatics::GetPlayerController(GetWorld(),0);
+			FHitResult OutResult;
+	
 			
+			if(playerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Vehicle,true, OutResult))
+			{
+				if(auto DADObj = Cast<ADADObject>(OutResult.GetActor()))
+				{
+					if(IsValid(TempTowerSelected))
+					{
+						TempTowerSelected->ChangeMaterialForGlowing(TempTowerSelected->Unglowing_material);
+						TempTowerSelected = NULL;
+					}
+					//TODO Glowing Material
+					DADObj->ChangeMaterialForGlowing(DADObj->Glowing_material);
+					TempTowerSelected = DADObj;
+				}else
+				{
+					if(IsValid(TempTowerSelected))
+					{
+						TempTowerSelected->ChangeMaterialForGlowing(TempTowerSelected->Unglowing_material);
+						TempTowerSelected = NULL;
+					}
+				}
+			}
+		}
+		//TODO SI touche un DADObject un menu apparait pour faire des actions
 	}else
 	{
 		// SI GRAB
@@ -68,7 +95,6 @@ void ATD_Player::LeftClick(const FInputActionInstance& Instance)
 			canPutTower = true;
 		}
 	}
-		
 }
 
 /**

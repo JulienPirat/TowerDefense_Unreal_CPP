@@ -19,6 +19,11 @@ ARailGun_Tower::ARailGun_Tower()
 	MiddleShield->SetupAttachment(RootComponent);
 }
 
+void ARailGun_Tower::ChangeMaterialForGlowing(UMaterialInterface* material)
+{
+	MiddleBody->SetMaterial(2, material); //Change le matériel pour le Glowing
+}
+
 // Called when the game starts or when spawned
 void ARailGun_Tower::BeginPlay()
 {

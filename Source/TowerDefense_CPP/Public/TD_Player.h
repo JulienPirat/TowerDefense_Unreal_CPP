@@ -77,4 +77,9 @@ private:
 	 * @brief Tourelle créer ou grab.
 	 */
 	ADADObject* TempGrab;
+
+	/**
+	 * @brief Tourelle Sélectionnée.
+	 */
+	ADADObject* TempTowerSelected;
 };

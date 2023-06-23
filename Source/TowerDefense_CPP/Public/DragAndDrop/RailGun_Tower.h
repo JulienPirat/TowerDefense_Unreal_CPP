@@ -21,7 +21,9 @@ class TOWERDEFENSE_CPP_API ARailGun_Tower : public ADADObject
 public:
 	// Sets default values for this actor's properties
 	ARailGun_Tower();
-
+	
+	virtual void ChangeMaterialForGlowing(UMaterialInterface* material) override;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

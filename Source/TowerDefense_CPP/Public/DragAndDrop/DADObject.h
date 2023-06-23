@@ -31,6 +31,8 @@ class TOWERDEFENSE_CPP_API ADADObject : public APawn
 	UPROPERTY(EditAnywhere)
 	UWidgetInteractionComponent* WidgetInteraction;
 
+	
+	
 	/**
 	 * @brief Material pour l'areaDamage CanPutTower_material
 	 */
@@ -57,6 +59,18 @@ public:
 	TSubclassOf<AProjectile> Projectile;
 
 	/**
+	 * @brief Material lors de la sélection d'une tourelle
+	 */
+	UPROPERTY(EditAnywhere)
+	UMaterialInterface* Glowing_material;
+
+	/**
+	 * @brief Material lors de la désélection d'une tourelle
+	 */
+	UPROPERTY(EditAnywhere)
+	UMaterialInterface* Unglowing_material;
+	
+	/**
 	 * @brief Tire un Projectile en direction du forward Vector de la tourelle
 	 */
 	UFUNCTION(BlueprintCallable)
@@ -77,6 +91,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void BeforeDestroy();
+
+	UFUNCTION(BlueprintCallable)
+	virtual void ChangeMaterialForGlowing(UMaterialInterface* material);
 	
 	/**
 	 * @brief Possibilité de poser une tourelle. Utilisé dans le player.

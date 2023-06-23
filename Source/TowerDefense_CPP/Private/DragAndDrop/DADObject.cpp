@@ -142,6 +142,11 @@ void ADADObject::BeforeDestroy()
 	Destroy();
 }
 
+void ADADObject::ChangeMaterialForGlowing(UMaterialInterface* material)
+{
+	MeshComponent->SetMaterial(1, material); //Change le matériel de la zone de dégats
+}
+
 /**
  * @brief Change la position de la tourelle
  * @param Position FVector qui indique la nouvelle position de la tourelle. 
