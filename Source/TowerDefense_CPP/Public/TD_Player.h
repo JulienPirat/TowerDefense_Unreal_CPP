@@ -30,6 +30,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
 	UInputAction* IA_LeftClick_Grabe;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
+	UInputAction* IA_ShotcutMoveTower_M;
+
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<ADADObject> DADObjectToSpawn;
 
@@ -47,6 +50,7 @@ public:
 
 	void LeftClick(const FInputActionInstance& Instance);
 	void LeftClickGrab(const FInputActionInstance& Instance);
+	void ShortcutMoveTower_M(const FInputActionInstance& Instance);
 
 	/**
 	 * @brief Indique si peut poser une tourelle (Utilisé dans le UI)

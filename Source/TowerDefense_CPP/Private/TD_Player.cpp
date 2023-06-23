@@ -36,6 +36,7 @@ void ATD_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 	Input->BindAction(IA_LeftClick, ETriggerEvent::Triggered, this, &ATD_Player::LeftClick);
 	Input->BindAction(IA_LeftClick_Grabe, ETriggerEvent::Triggered, this, &ATD_Player::LeftClickGrab);
+	Input->BindAction(IA_ShotcutMoveTower_M, ETriggerEvent::Triggered, this, &ATD_Player::ShortcutMoveTower_M);
 }
 
 void ATD_Player::LeftClick(const FInputActionInstance& Instance)
@@ -115,6 +116,44 @@ void ATD_Player::LeftClickGrab(const FInputActionInstance& Instance)
 			TempGrab = DADObj;
 			isLeftClickGrab = true;
 			canPutTower = false;
+		}
+	}
+}
+
+void ATD_Player::ShortcutMoveTower_M(const FInputActionInstance& Instance)
+{
+	//TODO Faire le hortcut quand une tower est sélectionné de la faire comme un grab
+	if(IsValid(TempTowerSelected))
+	{
+		if(IsValid(TempGrab))
+		{
+			if(TempGrab->b_CanPutTower)
+			{
+				TempGrab->SetIsActive(false);
+				TempGrab = NULL;
+				isLeftClickGrab = false;
+				canPutTower = true;
+			}
+		}else
+		{
+			TempTowerSelected->SetIsActive(true);
+			TempGrab = TempTowerSelected;
+			TempTowerSelected->ChangeMaterialForGlowing(TempTowerSelected->Unglowing_material);
+			TempTowerSelected = NULL;
+			isLeftClickGrab = true;
+			canPutTower = false;
+		}
+	}else
+	{
+		if(IsValid(TempGrab))
+		{
+			if(TempGrab->b_CanPutTower)
+			{
+				TempGrab->SetIsActive(false);
+				TempGrab = NULL;
+				isLeftClickGrab = false;
+				canPutTower = true;
+			}
 		}
 	}
 }
