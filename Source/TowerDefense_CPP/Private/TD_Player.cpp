@@ -120,6 +120,10 @@ void ATD_Player::LeftClickGrab(const FInputActionInstance& Instance)
 	}
 }
 
+/**
+ * @brief Fonction de la touche M pour déplacer/placer une tourelle.
+ * @param Instance 
+ */
 void ATD_Player::ShortcutMoveTower_M(const FInputActionInstance& Instance)
 {
 	//TODO Faire le hortcut quand une tower est sélectionné de la faire comme un grab
