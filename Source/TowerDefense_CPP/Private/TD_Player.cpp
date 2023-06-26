@@ -116,6 +116,12 @@ void ATD_Player::LeftClickGrab(const FInputActionInstance& Instance)
 			TempGrab = DADObj;
 			isLeftClickGrab = true;
 			canPutTower = false;
+
+			if(IsValid(TempTowerSelected))
+			{
+				TempTowerSelected->ChangeMaterialForGlowing(TempTowerSelected->Unglowing_material);
+				TempTowerSelected = NULL;
+			}
 		}
 	}
 }
