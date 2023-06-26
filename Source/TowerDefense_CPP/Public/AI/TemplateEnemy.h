@@ -31,6 +31,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stat")
 	int Damage;
 
+	/**
+	 * @brief Vie du mignon
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stat")
+	int Life;
+
+	/**
+	 * @brief 
+	 * @param damageTook Dégats reçu
+	 */
+	UFUNCTION(BlueprintCallable)
+	void tookDamage(int damageTook);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

@@ -17,6 +17,15 @@ ATemplateEnemy::ATemplateEnemy()
 	MovementComponent->UpdatedComponent = RootComponent;
 }
 
+void ATemplateEnemy::tookDamage(int damageTook)
+{
+	this->Life -= damageTook;
+	if(Life <= 0)
+	{
+		Destroy();
+	}
+}
+
 // Called when the game starts or when spawned
 void ATemplateEnemy::BeginPlay()
 {

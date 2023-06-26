@@ -27,6 +27,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float delayDestroyProjectile;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Damage;
 	
 	UFUNCTION(BlueprintCallable)
 	void destroyProjectile();

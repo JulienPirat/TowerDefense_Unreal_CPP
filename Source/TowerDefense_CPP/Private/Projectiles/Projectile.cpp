@@ -45,7 +45,7 @@ void AProjectile::BeginPlay()
 void AProjectile::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {
 	if (auto Enemy = Cast<ATemplateEnemy>(OtherActor)) {
-		Enemy->Destroy();
+		Enemy->tookDamage(this->Damage);
 		Destroy();
 	}
 }
