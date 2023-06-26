@@ -48,6 +48,7 @@ void ADADObject::BeginPlay()
 	Super::BeginPlay();
 	SetIsActive(true);
 	playerController = UGameplayStatics::GetPlayerController(GetWorld(),0);
+	NbUpgrade = 0;
 }
 
 // Called every frame
@@ -145,6 +146,11 @@ void ADADObject::BeforeDestroy()
 void ADADObject::ChangeMaterialForGlowing(UMaterialInterface* material)
 {
 	MeshComponent->SetMaterial(1, material); //Change le matériel de la zone de dégats
+}
+
+void ADADObject::Upgrade()
+{
+	//TODO Change Colors, Stats, and Projectiles
 }
 
 /**

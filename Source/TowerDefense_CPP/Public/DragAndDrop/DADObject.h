@@ -94,6 +94,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	virtual void ChangeMaterialForGlowing(UMaterialInterface* material);
+
+	UFUNCTION(BlueprintCallable)
+	virtual void Upgrade();
 	
 	/**
 	 * @brief Possibilité de poser une tourelle. Utilisé dans le player.
@@ -118,4 +121,6 @@ private:
 	
 	FVector InitialPosition;
 	APlayerController* playerController;
+
+	int NbUpgrade;
 };
