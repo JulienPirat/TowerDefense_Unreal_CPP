@@ -38,6 +38,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stat")
 	int Life;
+
+	/**
+	 * @brief Tourelle Sélectionnée.
+	 */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	ADADObject* TempTowerSelected;
 	
 protected:
 	// Called when the game starts or when spawned
@@ -82,8 +88,5 @@ private:
 	 */
 	ADADObject* TempGrab;
 
-	/**
-	 * @brief Tourelle Sélectionnée.
-	 */
-	ADADObject* TempTowerSelected;
+	
 };
