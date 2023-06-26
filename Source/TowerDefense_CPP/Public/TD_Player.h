@@ -78,6 +78,18 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void TookDamage(int value);
+
+	/**
+	 * @brief Augmente les stats et la couleurs de la tourelle sélectionnée.
+	 */
+	UFUNCTION(BlueprintCallable)
+	void UpgradeSelectedTower();
+
+	/**
+	 * @brief Supprime la tourelle sélectionnée.
+	 */
+	UFUNCTION(BlueprintCallable)
+	void DeleteSelectedTower();
 	
 private:
 	

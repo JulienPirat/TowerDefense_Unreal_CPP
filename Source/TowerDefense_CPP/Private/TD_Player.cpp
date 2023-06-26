@@ -203,4 +203,19 @@ void ATD_Player::TookDamage(int value)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("TODO : Player is Dead"));	
 	}
+}
+
+void ATD_Player::UpgradeSelectedTower()
+{
+	//TODO Change Stats and Colors of the tower (Need to call this function when UI Button Upgrade is pressed)
+}
+
+void ATD_Player::DeleteSelectedTower()
+{
+	if(IsValid(TempTowerSelected))
+	{
+		TempTowerSelected->BeforeDestroy();
+		TempTowerSelected = NULL;
+		//Faire attention lors d'un grab !!!
+	}
 } 
