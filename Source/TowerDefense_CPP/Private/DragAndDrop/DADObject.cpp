@@ -145,11 +145,18 @@ void ADADObject::BeforeDestroy()
 
 void ADADObject::ChangeMaterialForGlowing(UMaterialInterface* material)
 {
-	MeshComponent->SetMaterial(1, material); //Change le matériel de la zone de dégats
+	MeshComponent->SetMaterial(1, material);
+}
+
+void ADADObject::ChangeMaterialForUpgrade()
+{
+	UE_LOG(LogTemp, Warning, TEXT("ChangeMaterialForUpgrade Not Implemented"));
 }
 
 void ADADObject::Upgrade()
 {
+	NbUpgrade++;
+	ChangeMaterialForUpgrade();
 	//TODO Change Colors, Stats, and Projectiles
 }
 

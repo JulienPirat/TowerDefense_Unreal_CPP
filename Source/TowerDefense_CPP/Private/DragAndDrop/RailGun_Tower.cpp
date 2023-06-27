@@ -19,11 +19,6 @@ ARailGun_Tower::ARailGun_Tower()
 	MiddleShield->SetupAttachment(RootComponent);
 }
 
-void ARailGun_Tower::ChangeMaterialForGlowing(UMaterialInterface* material)
-{
-	MiddleBody->SetMaterial(2, material); //Change le matériel pour le Glowing
-}
-
 // Called when the game starts or when spawned
 void ARailGun_Tower::BeginPlay()
 {
@@ -35,5 +30,22 @@ void ARailGun_Tower::BeginPlay()
 void ARailGun_Tower::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+void ARailGun_Tower::ChangeMaterialForGlowing(UMaterialInterface* material)
+{
+	MiddleBody->SetMaterial(2, material); //Change le matériel pour le Glowing
+}
+
+void ARailGun_Tower::ChangeMaterialForUpgrade()
+{
+	MiddleShield->SetMaterial(1, MiddleShield_material[NbUpgrade-1]);
+	BarrelMesh->SetMaterial(2, MiddleShield_material[NbUpgrade-1]);
+	MiddleBody->SetMaterial(3,Cable_material[NbUpgrade-1]);
+}
+
+void ARailGun_Tower::Upgrade()
+{
+	Super::Upgrade();
 }
 

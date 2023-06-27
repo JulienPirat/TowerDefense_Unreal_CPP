@@ -214,6 +214,10 @@ void ATD_Player::TookDamage(int value)
 void ATD_Player::UpgradeSelectedTower()
 {
 	//TODO Change Stats and Colors of the tower (Need to call this function when UI Button Upgrade is pressed)
+	if(IsValid(TempTowerSelected))
+	{
+		TempTowerSelected->Upgrade();
+	}
 }
 
 void ATD_Player::DeleteSelectedTower()

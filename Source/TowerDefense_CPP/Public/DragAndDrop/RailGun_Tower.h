@@ -24,6 +24,10 @@ public:
 	
 	virtual void ChangeMaterialForGlowing(UMaterialInterface* material) override;
 	
+	virtual void ChangeMaterialForUpgrade() override;
+	
+	virtual void Upgrade() override;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

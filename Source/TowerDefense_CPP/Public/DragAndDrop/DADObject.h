@@ -16,20 +16,7 @@ class TOWERDEFENSE_CPP_API ADADObject : public APawn
 {
 	GENERATED_BODY()
 	
-	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* MeshComponent;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<AAreaToFire> AreaCanFire;
 	
-	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* BarrelMesh;
-
-	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* SpawnProjectile_Empty;
-
-	UPROPERTY(EditAnywhere)
-	UWidgetInteractionComponent* WidgetInteraction;
 
 	
 	
@@ -49,6 +36,21 @@ public:
 	// Sets default values for this pawn's properties
 	ADADObject();
 
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* MeshComponent;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AAreaToFire> AreaCanFire;
+	
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* BarrelMesh;
+
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* SpawnProjectile_Empty;
+
+	UPROPERTY(EditAnywhere)
+	UWidgetInteractionComponent* WidgetInteraction;
+	
 	/**
 	 * @brief Indique si la tour peut tirer 
 	 */
@@ -61,14 +63,26 @@ public:
 	/**
 	 * @brief Material lors de la sélection d'une tourelle
 	 */
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category="Glowing")
 	UMaterialInterface* Glowing_material;
 
 	/**
 	 * @brief Material lors de la désélection d'une tourelle
 	 */
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category="Glowing")
 	UMaterialInterface* Unglowing_material;
+
+	/**
+	 * @brief Material MiddleShield pour upgrade
+	 */
+	UPROPERTY(EditAnywhere, Category="Upgrade")
+	TArray<UMaterialInterface*> MiddleShield_material;
+
+	/**
+	 * @brief Material Cable pour upgrade
+	 */
+	UPROPERTY(EditAnywhere, Category="Upgrade")
+	TArray<UMaterialInterface*> Cable_material;
 	
 	/**
 	 * @brief Tire un Projectile en direction du forward Vector de la tourelle
@@ -96,6 +110,9 @@ public:
 	virtual void ChangeMaterialForGlowing(UMaterialInterface* material);
 
 	UFUNCTION(BlueprintCallable)
+	virtual void ChangeMaterialForUpgrade();
+
+	UFUNCTION(BlueprintCallable)
 	virtual void Upgrade();
 	
 	/**
@@ -103,6 +120,11 @@ public:
 	 */
 	bool b_CanPutTower;
 
+	/**
+	 * @brief Nombre de fois que la tower a été upgrade
+	 */
+	int NbUpgrade;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -122,5 +144,5 @@ private:
 	FVector InitialPosition;
 	APlayerController* playerController;
 
-	int NbUpgrade;
+	
 };
