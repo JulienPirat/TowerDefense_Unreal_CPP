@@ -58,7 +58,7 @@ public:
 	bool isActive;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<AProjectile> Projectile;
+	TArray<TSubclassOf<AProjectile>> Projectile;
 
 	/**
 	 * @brief Material lors de la sélection d'une tourelle

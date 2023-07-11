@@ -39,7 +39,7 @@ ADADObject::ADADObject()
 void ADADObject::FireProjectile()
 {
 	if(!isActive)
-		auto p = GetWorld()->SpawnActor<AProjectile>(this->Projectile,SpawnProjectile_Empty->GetComponentLocation(), GetActorRotation());
+		auto p = GetWorld()->SpawnActor<AProjectile>(this->Projectile[NbUpgrade],SpawnProjectile_Empty->GetComponentLocation(), GetActorRotation());
 }
 
 // Called when the game starts or when spawned
