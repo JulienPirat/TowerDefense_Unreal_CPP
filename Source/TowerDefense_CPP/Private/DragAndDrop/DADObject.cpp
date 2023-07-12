@@ -46,9 +46,12 @@ void ADADObject::FireProjectile()
 void ADADObject::BeginPlay()
 {
 	Super::BeginPlay();
+	AIController = GetController<AAIController>();
+	
 	SetIsActive(true);
 	playerController = UGameplayStatics::GetPlayerController(GetWorld(),0);
 	NbUpgrade = 0;
+	
 }
 
 // Called every frame
@@ -157,6 +160,7 @@ void ADADObject::Upgrade()
 {
 	NbUpgrade++;
 	ChangeMaterialForUpgrade();
+	TimeToReact *= 0.95; // Réduit de 5%
 	//TODO Change Colors, Stats, and Projectiles
 }
 

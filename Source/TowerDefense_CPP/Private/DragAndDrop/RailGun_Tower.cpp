@@ -3,6 +3,9 @@
 
 #include "DragAndDrop/RailGun_Tower.h"
 
+#include "AI/TowerAIController.h"
+#include "BehaviorTree/BlackboardComponent.h"
+
 
 // Sets default values
 ARailGun_Tower::ARailGun_Tower()
@@ -23,7 +26,12 @@ ARailGun_Tower::ARailGun_Tower()
 void ARailGun_Tower::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	AIController = GetController<ATowerAIController>();
+
+	if(IsValid(AIController))
+	{
+		AIController->GetBlackboardComponent()->SetValueAsFloat(FName("TimeToReact"),TimeToReact);
+	}
 }
 
 // Called every frame

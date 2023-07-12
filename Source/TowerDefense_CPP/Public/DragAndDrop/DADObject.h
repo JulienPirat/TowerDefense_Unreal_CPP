@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AIController.h"
 #include "AreaToFire.h"
 #include "Components/BoxComponent.h"
 #include "Components/WidgetInteractionComponent.h"
@@ -15,10 +16,6 @@ UCLASS()
 class TOWERDEFENSE_CPP_API ADADObject : public APawn
 {
 	GENERATED_BODY()
-	
-	
-
-	
 	
 	/**
 	 * @brief Material pour l'areaDamage CanPutTower_material
@@ -35,7 +32,7 @@ class TOWERDEFENSE_CPP_API ADADObject : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ADADObject();
-
+	
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* MeshComponent;
 
@@ -50,6 +47,15 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	UWidgetInteractionComponent* WidgetInteraction;
+
+	UPROPERTY(BlueprintReadOnly, Category="AI")
+	AAIController* AIController;
+
+	/**
+	 * @brief Time to the tower for react
+	 */
+	UPROPERTY(EditAnywhere, Category="AI")
+	float TimeToReact;
 	
 	/**
 	 * @brief Indique si la tour peut tirer 
