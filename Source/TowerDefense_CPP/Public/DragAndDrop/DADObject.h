@@ -89,6 +89,12 @@ public:
 	 */
 	UPROPERTY(EditAnywhere, Category="Upgrade")
 	TArray<UMaterialInterface*> Cable_material;
+
+	UPROPERTY(EditAnywhere, Category="Sounds")
+	USoundBase* DestroySound;
+
+	UPROPERTY(EditAnywhere, Category="Sounds")
+	USoundBase* FireSound;
 	
 	/**
 	 * @brief Tire un Projectile en direction du forward Vector de la tourelle

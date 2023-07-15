@@ -32,14 +32,17 @@ ADADObject::ADADObject()
 	WidgetInteraction->SetupAttachment(MeshComponent);
 
 }
-
 /**
  * @brief Tire un Projectile en direction du forward Vector de la tourelle
  */
 void ADADObject::FireProjectile()
 {
 	if(!isActive)
+	{
 		auto p = GetWorld()->SpawnActor<AProjectile>(this->Projectile[NbUpgrade],SpawnProjectile_Empty->GetComponentLocation(), GetActorRotation());
+		if(IsValid(FireSound))
+			UGameplayStatics::PlaySound2D(GetWorld(),FireSound);
+	}
 }
 
 // Called when the game starts or when spawned
@@ -143,6 +146,8 @@ void ADADObject::BeforeDestroy()
 {
 	if(IsValid(TempArea))
 		TempArea->Destroy();
+	if(IsValid(DestroySound))
+		UGameplayStatics::PlaySound2D(GetWorld(),DestroySound);
 	Destroy();
 }
 
