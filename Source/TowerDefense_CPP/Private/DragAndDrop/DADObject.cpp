@@ -167,6 +167,8 @@ void ADADObject::Upgrade()
 	ChangeMaterialForUpgrade();
 	TimeToReact *= 0.95; // Réduit de 5%
 	//TODO Change Colors, Stats, and Projectiles
+	if(IsValid(UpgradeSound))
+		UGameplayStatics::PlaySound2D(GetWorld(),UpgradeSound);
 }
 
 /**

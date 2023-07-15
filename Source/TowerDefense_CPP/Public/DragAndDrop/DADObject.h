@@ -95,6 +95,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category="Sounds")
 	USoundBase* FireSound;
+
+	UPROPERTY(EditAnywhere, Category="Sounds")
+	USoundBase* UpgradeSound;
 	
 	/**
 	 * @brief Tire un Projectile en direction du forward Vector de la tourelle
