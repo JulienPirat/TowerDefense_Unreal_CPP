@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Components/WidgetInteractionComponent.h"
 #include "Components/WidgetComponent.h"
+#include "NiagaraFunctionLibrary.h"
 
 // Sets default values
 ADADObject::ADADObject()
@@ -148,6 +149,7 @@ void ADADObject::BeforeDestroy()
 		TempArea->Destroy();
 	if(IsValid(DestroySound))
 		UGameplayStatics::PlaySound2D(GetWorld(),DestroySound);
+	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(),ExplosionParticule,this->GetActorLocation(),this->GetActorRotation(), FVector(1),true,true);
 	Destroy();
 }
 

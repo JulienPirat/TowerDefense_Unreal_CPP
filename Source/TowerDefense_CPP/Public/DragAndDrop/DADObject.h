@@ -98,6 +98,10 @@ public:
 
 	UPROPERTY(EditAnywhere, Category="Sounds")
 	USoundBase* UpgradeSound;
+
+	UPROPERTY(EditAnywhere, Category="Niagara")
+	class UNiagaraSystem* ExplosionParticule;
+	
 	
 	/**
 	 * @brief Tire un Projectile en direction du forward Vector de la tourelle
