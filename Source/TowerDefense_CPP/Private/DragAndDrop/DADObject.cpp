@@ -171,6 +171,7 @@ void ADADObject::Upgrade()
 	//TODO Change Colors, Stats, and Projectiles
 	if(IsValid(UpgradeSound))
 		UGameplayStatics::PlaySound2D(GetWorld(),UpgradeSound);
+	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(),UpgradeParticule,this->GetActorLocation(),this->GetActorRotation(), FVector(1),true,true);
 }
 
 /**

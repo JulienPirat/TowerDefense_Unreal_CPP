@@ -101,6 +101,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category="Niagara")
 	class UNiagaraSystem* ExplosionParticule;
+
+	UPROPERTY(EditAnywhere, Category="Niagara")
+	class UNiagaraSystem* UpgradeParticule;
 	
 	
 	/**
