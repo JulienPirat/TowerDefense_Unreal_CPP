@@ -15,11 +15,9 @@ class TOWERDEFENSE_CPP_API AWavesSystem : public AActor
 public:
 	// Sets default values for this actor's properties
 	AWavesSystem();
-
 	
 	UPROPERTY(BlueprintReadOnly)
 	TArray<ASpawnerTemplate*> Spawners;
-	
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<ASpawnerTemplate> Spawner;
@@ -36,4 +34,6 @@ private:
 	 * @return true if all spawner is ready | false if one of them is not
 	 */
 	bool AllSpawnersAreReady();
+
+	void StartAllSpawners();
 };

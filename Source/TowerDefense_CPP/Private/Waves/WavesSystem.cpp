@@ -29,9 +29,7 @@ void AWavesSystem::BeginPlay()
 	}
 
 	if(AllSpawnersAreReady())
-	{
-		
-	}
+		StartAllSpawners();
 }
 
 bool AWavesSystem::AllSpawnersAreReady()
@@ -51,6 +49,14 @@ bool AWavesSystem::AllSpawnersAreReady()
 	else
 	{
 		return false;
+	}
+}
+
+void AWavesSystem::StartAllSpawners()
+{
+	for (auto sp : Spawners)
+	{
+		sp->StartSpawner();
 	}
 }
 
