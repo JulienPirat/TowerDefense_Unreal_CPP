@@ -3,6 +3,7 @@
 
 #include "AI/TemplateEnemy.h"
 
+#include "Spawner.h"
 #include "GameFramework/FloatingPawnMovement.h"
 
 
@@ -22,8 +23,14 @@ void ATemplateEnemy::tookDamage(int damageTook)
 	this->Life -= damageTook;
 	if(Life <= 0)
 	{
+		_spawner->removeOneEnemyRemaining();
 		Destroy();
 	}
+}
+
+void ATemplateEnemy::giveSpawner(ASpawner* spawner)
+{
+	this->_spawner = spawner;
 }
 
 // Called when the game starts or when spawned

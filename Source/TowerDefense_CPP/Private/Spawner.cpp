@@ -16,6 +16,16 @@ ASpawner::ASpawner()
 	DelayToSpawn = 1.5f;
 }
 
+void ASpawner::removeOneEnemyRemaining()
+{
+	NbToSpawn--;
+	if(NbToSpawn == 0)
+	{
+		SpawnMob();
+		NbToSpawn = 9; // A MODIFIER ICI
+	}
+}
+
 // Called when the game starts or when spawned
 void ASpawner::BeginPlay()
 {
@@ -32,6 +42,8 @@ void ASpawner::SpawnMob()
 	// Used to manage time
 	FTimerHandle TimerHandle;
 	auto spawnedMob = GetWorld()->SpawnActor<ATemplateEnemy>(this->MobToSpawn,GetActorLocation(), FRotator(0,0,0));
+	spawnedMob->giveSpawner(this);
+	NbEnemyRemaining++;
 	if(IsValid(spawnedMob))
 	{
 		NbToSpawn -=1;

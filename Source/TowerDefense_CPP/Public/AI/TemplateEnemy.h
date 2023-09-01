@@ -7,6 +7,8 @@
 #include "UObject/Object.h"
 #include "TemplateEnemy.generated.h"
 
+class ASpawner;
+
 /**
  * 
  */
@@ -44,6 +46,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void tookDamage(int damageTook);
 
+	/**
+	 * @brief Spawner were this Enemy was spawn.
+	 */
+	UFUNCTION(BlueprintCallable)
+	void giveSpawner(ASpawner* spawner);
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -52,4 +60,11 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+private:
+	
+	/**
+	 * @brief Spawner were this Enemy was spawn.
+	 */
+	ASpawner* _spawner;
 };

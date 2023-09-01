@@ -25,6 +25,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	float DelayToSpawn;
+
+	UFUNCTION(BlueprintCallable)
+	void removeOneEnemyRemaining();
 	
 protected:
 	// Called when the game starts or when spawned
@@ -35,4 +38,6 @@ private:
 	 * @brief Fonction récursive jusqu'au bon nombre de mob spawn.
 	 */
 	void SpawnMob();
+
+	int NbEnemyRemaining = 0;
 };
