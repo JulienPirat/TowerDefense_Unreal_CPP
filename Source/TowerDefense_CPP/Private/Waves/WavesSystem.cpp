@@ -4,6 +4,8 @@
 #include "Waves/WavesSystem.h"
 
 #include "Kismet/GameplayStatics.h"
+#include "Tasks/Task.h"
+#include "Waves/SpawnerTemplate.h"
 
 
 // Sets default values
@@ -11,6 +13,23 @@ AWavesSystem::AWavesSystem()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+}
+
+void AWavesSystem::GetMessageFromSpawner()
+{
+	if(AllSpawnersAreReady())
+	{
+		// When the function will be executed
+		float MyDelay = 3;
+		// Used to manage time
+		FTimerHandle TimerHandle;
+
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
+		{
+			GetWorld()->GetTimerManager().ClearTimer(TimerHandle); //Clear le timer pour pas faire des pertes de mémoire.
+			StartAllSpawners();
+		},  MyDelay, false);
+	}
 }
 
 // Called when the game starts or when spawned

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "MignonController.h"
 #include "UObject/Object.h"
+#include "Waves/SpawnerTemplate.h"
 #include "TemplateEnemy.generated.h"
 
 class ASpawner;
@@ -50,7 +51,7 @@ public:
 	 * @brief Spawner were this Enemy was spawn.
 	 */
 	UFUNCTION(BlueprintCallable)
-	void giveSpawner(ASpawner* spawner);
+	void giveSpawner(ASpawnerTemplate* spawner);
 	
 protected:
 	// Called when the game starts or when spawned
@@ -61,10 +62,15 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintCallable)
+	void BeforeDestroy();
+	
 private:
 	
 	/**
 	 * @brief Spawner were this Enemy was spawn.
 	 */
-	ASpawner* _spawner;
+	ASpawnerTemplate* _spawner;
+
+	
 };

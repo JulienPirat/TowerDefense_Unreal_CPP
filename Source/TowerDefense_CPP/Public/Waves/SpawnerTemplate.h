@@ -3,9 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Waves/WavesSystem.h"
 #include "GameFramework/Actor.h"
-#include "AI/TemplateEnemy.h"
 #include "SpawnerTemplate.generated.h"
+
+class ATemplateEnemy;
 
 UCLASS()
 class TOWERDEFENSE_CPP_API ASpawnerTemplate : public AActor
@@ -28,6 +30,12 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	bool isEnable;
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AWavesSystem> WaveSystem;
+
+	UFUNCTION(BlueprintCallable)
+	void removeOneEnemyRemaining();
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -44,4 +52,8 @@ private:
 	 * @brief Fonction récursive jusqu'au bon nombre de mob spawn.
 	 */
 	void SpawnMob();
+
+	void SendFinishToWavesSystem();
+
+	int NbEnemyRemaining = 0;
 };

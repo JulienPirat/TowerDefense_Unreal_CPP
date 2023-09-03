@@ -4,6 +4,7 @@
 #include "Waves/SpawnerTemplate.h"
 #include "Kismet/GameplayStatics.h"
 #include "AI/TemplateEnemy.h"
+#include "Waves/WavesSystem.h"
 
 // Sets default values
 ASpawnerTemplate::ASpawnerTemplate()
@@ -42,6 +43,9 @@ void ASpawnerTemplate::SpawnMob()
 	// Used to manage time
 	FTimerHandle TimerHandle;
 	auto spawnedMob = GetWorld()->SpawnActor<ATemplateEnemy>(this->MobToSpawn,GetActorLocation(), FRotator(0,0,0));
+	spawnedMob->giveSpawner(this);
+	NbEnemyRemaining++;
+	NbToSpawn--;
 	if(NbToSpawn>0)
 	{
 		// This with execute a function after the specified Delay
@@ -53,8 +57,29 @@ void ASpawnerTemplate::SpawnMob()
 				SpawnMob();
 			}else
 			{
-				isEnable = false;
+				
 			}
 		},  DelayToSpawn, false);
+	}
+}
+
+void ASpawnerTemplate::SendFinishToWavesSystem()
+{
+	auto AWaveSys = UGameplayStatics::GetActorOfClass(this,WaveSystem);
+	
+	if (auto WaveSys = Cast<AWavesSystem>(AWaveSys)) {
+		WaveSys->GetMessageFromSpawner();
+	}
+
+}
+
+void ASpawnerTemplate::removeOneEnemyRemaining()
+{
+	NbEnemyRemaining--;
+	if(NbEnemyRemaining <= 0)
+	{
+		NbEnemyRemaining = 0; // au cas ou
+		isEnable = false;
+		SendFinishToWavesSystem();
 	}
 }

@@ -42,7 +42,7 @@ void ASpawner::SpawnMob()
 	// Used to manage time
 	FTimerHandle TimerHandle;
 	auto spawnedMob = GetWorld()->SpawnActor<ATemplateEnemy>(this->MobToSpawn,GetActorLocation(), FRotator(0,0,0));
-	spawnedMob->giveSpawner(this);
+	//spawnedMob->giveSpawner(this); OLD
 	NbEnemyRemaining++;
 	if(IsValid(spawnedMob))
 	{

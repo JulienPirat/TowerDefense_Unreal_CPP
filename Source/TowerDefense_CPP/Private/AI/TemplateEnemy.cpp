@@ -23,12 +23,11 @@ void ATemplateEnemy::tookDamage(int damageTook)
 	this->Life -= damageTook;
 	if(Life <= 0)
 	{
-		_spawner->removeOneEnemyRemaining();
-		Destroy();
+		BeforeDestroy();
 	}
 }
 
-void ATemplateEnemy::giveSpawner(ASpawner* spawner)
+void ATemplateEnemy::giveSpawner(ASpawnerTemplate* spawner)
 {
 	this->_spawner = spawner;
 }
@@ -43,4 +42,10 @@ void ATemplateEnemy::BeginPlay()
 void ATemplateEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+}
+
+void ATemplateEnemy::BeforeDestroy()
+{
+	_spawner->removeOneEnemyRemaining();
+	Destroy();
 }

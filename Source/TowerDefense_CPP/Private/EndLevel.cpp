@@ -37,7 +37,7 @@ void AEndLevel::OnOverlap(AActor* MyActor, AActor* OtherActor)
 		{
 			if (auto Player = Cast<ATD_Player>(APlayer)) {
 				Player->TookDamage(Enemy->Damage);
-				Enemy->Destroy();
+				Enemy->BeforeDestroy();
 			}
 		}
 	}

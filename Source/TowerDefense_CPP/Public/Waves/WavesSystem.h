@@ -3,9 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "SpawnerTemplate.h"
 #include "GameFramework/Actor.h"
 #include "WavesSystem.generated.h"
+
+class ASpawnerTemplate;
 
 UCLASS()
 class TOWERDEFENSE_CPP_API AWavesSystem : public AActor
@@ -22,6 +23,11 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<ASpawnerTemplate> Spawner;
 
+	/**
+	 * @brief Take message from spawner to indicate all of his mob was dead.
+	 * Waves System check if all spawner are ready to launch next wave.
+	 */
+	void GetMessageFromSpawner();
 	
 protected:
 	// Called when the game starts or when spawned
