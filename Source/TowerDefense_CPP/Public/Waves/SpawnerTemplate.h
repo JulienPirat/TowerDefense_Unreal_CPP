@@ -27,8 +27,11 @@ public:
 	UPROPERTY(EditAnywhere)
 	float DelayToSpawn;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	bool isEnable;
+
+	UPROPERTY(VisibleAnywhere)
+	int NbEnemyRemaining = 0;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AWavesSystem> WaveSystem;
@@ -54,6 +57,4 @@ private:
 	void SpawnMob();
 
 	void SendFinishToWavesSystem();
-
-	int NbEnemyRemaining = 0;
 };

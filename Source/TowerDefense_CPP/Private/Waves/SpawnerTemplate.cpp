@@ -32,6 +32,8 @@ void ASpawnerTemplate::Tick(float DeltaTime)
 void ASpawnerTemplate::StartSpawner()
 {
 	isEnable = true;
+	NbToSpawn = 5;
+	NbEnemyRemaining = 0;
 	SpawnMob();
 }
 
@@ -40,24 +42,25 @@ void ASpawnerTemplate::StartSpawner()
  */
 void ASpawnerTemplate::SpawnMob()
 {
-	// Used to manage time
-	FTimerHandle TimerHandle;
-	auto spawnedMob = GetWorld()->SpawnActor<ATemplateEnemy>(this->MobToSpawn,GetActorLocation(), FRotator(0,0,0));
-	spawnedMob->giveSpawner(this);
-	NbEnemyRemaining++;
-	NbToSpawn--;
 	if(NbToSpawn>0)
 	{
+		// Used to manage time
+		FTimerHandle TimerHandle;
+		auto spawnedMob = GetWorld()->SpawnActor<ATemplateEnemy>(this->MobToSpawn,GetActorLocation(), FRotator(0,0,0));
+		spawnedMob->giveSpawner(this);
+		NbEnemyRemaining++;
+		NbToSpawn--;
+	
 		// This with execute a function after the specified Delay
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
 		{
 			if(NbToSpawn>0)
 			{
-				GetWorld()->GetTimerManager().ClearTimer(TimerHandle); //Clear le timer pour pas faire des pertes de mémoire.
+				//GetWorld()->GetTimerManager().ClearTimer(TimerHandle); //Clear le timer pour pas faire des pertes de mémoire. | UPD : Not working and clear the wrong timer when more than 1 spawner 
 				SpawnMob();
 			}else
 			{
-				
+				//GetWorld()->GetTimerManager().ClearTimer(TimerHandle); //Clear le timer pour pas faire des pertes de mémoire. | UPD : Not working and clear the wrong timer when more than 1 spawner
 			}
 		},  DelayToSpawn, false);
 	}
@@ -80,6 +83,7 @@ void ASpawnerTemplate::removeOneEnemyRemaining()
 	{
 		NbEnemyRemaining = 0; // au cas ou
 		isEnable = false;
+		GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
 		SendFinishToWavesSystem();
 	}
 }
