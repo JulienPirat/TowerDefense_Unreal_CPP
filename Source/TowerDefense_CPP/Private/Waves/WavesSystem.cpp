@@ -19,8 +19,6 @@ void AWavesSystem::GetMessageFromSpawner()
 {
 	if(AllSpawnersAreReady())
 	{
-		// When the function will be executed
-		float MyDelay = 3;
 		// Used to manage time
 		FTimerHandle TimerHandle;
 
@@ -28,7 +26,7 @@ void AWavesSystem::GetMessageFromSpawner()
 		{
 			GetWorld()->GetTimerManager().ClearTimer(TimerHandle); //Clear le timer pour pas faire des pertes de mémoire.
 			StartAllSpawners();
-		},  MyDelay, false);
+		},  delayBetweenWaves, false);
 	}
 }
 

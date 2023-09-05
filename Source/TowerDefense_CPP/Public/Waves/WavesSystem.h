@@ -23,6 +23,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<ASpawnerTemplate> Spawner;
 
+	UPROPERTY(EditAnywhere)
+	int delayBetweenWaves;
+	
 	/**
 	 * @brief Take message from spawner to indicate all of his mob was dead.
 	 * Waves System check if all spawner are ready to launch next wave.
