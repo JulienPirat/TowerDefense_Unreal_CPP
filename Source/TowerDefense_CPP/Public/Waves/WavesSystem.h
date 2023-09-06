@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Utilities/WavesDataTables.h"
 #include "WavesSystem.generated.h"
 
 class ASpawnerTemplate;
@@ -25,6 +26,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	int delayBetweenWaves;
+
+	UPROPERTY(EditAnywhere)
+	UDataTable* DataTableForLevel;
 	
 	/**
 	 * @brief Take message from spawner to indicate all of his mob was dead.
