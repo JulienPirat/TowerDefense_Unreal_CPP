@@ -83,7 +83,7 @@ void AWavesSystem::StartAllSpawners()
 void AWavesSystem::InitSpawners()
 {
 	auto DataFromTable = DataTableForLevel->GetTableData();
-	//DataFromTable.Remove(DataFromTable[0]);
+	DataFromTable.RemoveAt(0);
 	/*
 	for (auto FromTable : DataFromTable)
 	{
