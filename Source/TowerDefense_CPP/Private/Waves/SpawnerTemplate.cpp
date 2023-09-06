@@ -10,7 +10,7 @@
 ASpawnerTemplate::ASpawnerTemplate()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	DelayToSpawn = 1.5f;
 	isEnable = false;
@@ -23,17 +23,12 @@ void ASpawnerTemplate::BeginPlay()
 	
 }
 
-// Called every frame
-void ASpawnerTemplate::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
-void ASpawnerTemplate::StartSpawner()
+void ASpawnerTemplate::StartSpawner(int nbMobToSpawn, int idMobToSpawn)
 {
 	isEnable = true;
-	NbToSpawn = 5;
+	NbToSpawn = nbMobToSpawn;
 	NbEnemyRemaining = 0;
+	idMobIsSpawn = idMobToSpawn;
 	SpawnMob();
 }
 
@@ -44,9 +39,10 @@ void ASpawnerTemplate::SpawnMob()
 {
 	if(NbToSpawn>0 && MobsCanSpawn.Num()>0)
 	{
+		//ICI Faire une vérif si le ID Existe ainsi que la liste est bien rempli
 		// Used to manage time
 		FTimerHandle TimerHandle;
-		auto spawnedMob = GetWorld()->SpawnActor<ATemplateEnemy>(this->MobsCanSpawn[1],GetActorLocation(), FRotator(0,0,0));
+		auto spawnedMob = GetWorld()->SpawnActor<ATemplateEnemy>(this->MobsCanSpawn[idMobIsSpawn],GetActorLocation(), FRotator(0,0,0));
 		spawnedMob->giveSpawner(this);
 		NbEnemyRemaining++;
 		NbToSpawn--;
@@ -56,7 +52,7 @@ void ASpawnerTemplate::SpawnMob()
 		{
 			if(NbToSpawn>0)
 			{
-				//GetWorld()->GetTimerManager().ClearTimer(TimerHandle); //Clear le timer pour pas faire des pertes de mémoire. | UPD : Not working and clear the wrong timer when more than 1 spawner 
+				//GetWorld()->GetTimerManager().ClearTimer(TimerHandle); //Clear le timer pour pas faire des pertes de mémoire. | UPD : Not working and clear the wrong timer when more than 1 spawner
 				SpawnMob();
 			}else
 			{

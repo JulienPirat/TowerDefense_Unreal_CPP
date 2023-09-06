@@ -76,12 +76,18 @@ void AWavesSystem::StartAllSpawners()
 {
 	for (auto sp : Spawners)
 	{
-		sp->StartSpawner();
+		sp->StartSpawner(5,1);
 	}
 }
 
 void AWavesSystem::InitSpawners()
 {
 	auto DataFromTable = DataTableForLevel->GetTableData();
+	//DataFromTable.Remove(DataFromTable[0]);
+	/*
+	for (auto FromTable : DataFromTable)
+	{
+		
+	}*/
 }
 

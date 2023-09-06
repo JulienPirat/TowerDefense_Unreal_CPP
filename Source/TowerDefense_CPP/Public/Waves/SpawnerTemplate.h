@@ -33,6 +33,9 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	int NbEnemyRemaining = 0;
 
+	UPROPERTY(VisibleAnywhere)
+	int idMobIsSpawn;
+
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AWavesSystem> WaveSystem;
 
@@ -44,11 +47,9 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable)
-	void StartSpawner();
+	void StartSpawner(int nbMobToSpawn, int idMobToSpawn);
 
 private:
 	/**
