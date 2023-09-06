@@ -35,6 +35,9 @@ void AWavesSystem::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if(IsValid(DataTableForLevel))
+		InitSpawners();
+	
 	TArray<AActor*> ActorSpawners;
 	UGameplayStatics::GetAllActorsOfClass(this,Spawner,ActorSpawners);
 
@@ -75,5 +78,10 @@ void AWavesSystem::StartAllSpawners()
 	{
 		sp->StartSpawner();
 	}
+}
+
+void AWavesSystem::InitSpawners()
+{
+	auto DataFromTable = DataTableForLevel->GetTableData();
 }
 

@@ -19,7 +19,7 @@ public:
 	ASpawnerTemplate();
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<ATemplateEnemy> MobToSpawn;
+	TMap<int,TSubclassOf<ATemplateEnemy>> MobsCanSpawn;
 
 	UPROPERTY(EditAnywhere)
 	int NbToSpawn;

@@ -42,11 +42,11 @@ void ASpawnerTemplate::StartSpawner()
  */
 void ASpawnerTemplate::SpawnMob()
 {
-	if(NbToSpawn>0)
+	if(NbToSpawn>0 && MobsCanSpawn.Num()>0)
 	{
 		// Used to manage time
 		FTimerHandle TimerHandle;
-		auto spawnedMob = GetWorld()->SpawnActor<ATemplateEnemy>(this->MobToSpawn,GetActorLocation(), FRotator(0,0,0));
+		auto spawnedMob = GetWorld()->SpawnActor<ATemplateEnemy>(this->MobsCanSpawn[1],GetActorLocation(), FRotator(0,0,0));
 		spawnedMob->giveSpawner(this);
 		NbEnemyRemaining++;
 		NbToSpawn--;

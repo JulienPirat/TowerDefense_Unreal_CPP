@@ -19,7 +19,7 @@ struct FWavesDataTables : public FTableRowBase
 	int WaveNumber;
 
 	UPROPERTY(EditAnywhere)
-	FString mobToSpawn;
+	int mobToSpawn;
 	
 	UPROPERTY(EditAnywhere)
 	int nbMobs;

@@ -49,4 +49,6 @@ private:
 	bool AllSpawnersAreReady();
 
 	void StartAllSpawners();
+
+	void InitSpawners();
 };
