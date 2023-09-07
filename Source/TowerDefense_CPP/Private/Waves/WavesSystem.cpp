@@ -25,6 +25,7 @@ void AWavesSystem::GetMessageFromSpawner()
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
 		{
 			GetWorld()->GetTimerManager().ClearTimer(TimerHandle); //Clear le timer pour pas faire des pertes de mémoire.
+			InitSpawners();
 			StartAllSpawners();
 		},  delayBetweenWaves, false);
 	}
@@ -34,9 +35,6 @@ void AWavesSystem::GetMessageFromSpawner()
 void AWavesSystem::BeginPlay()
 {
 	Super::BeginPlay();
-
-	if(IsValid(DataTableForLevel))
-		InitSpawners();
 	
 	TArray<AActor*> ActorSpawners;
 	UGameplayStatics::GetAllActorsOfClass(this,Spawner,ActorSpawners);
@@ -48,6 +46,9 @@ void AWavesSystem::BeginPlay()
 		}
 	}
 
+	if(IsValid(DataTableForLevel))
+		InitSpawners();
+	
 	if(AllSpawnersAreReady())
 		StartAllSpawners();
 }
@@ -76,18 +77,28 @@ void AWavesSystem::StartAllSpawners()
 {
 	for (auto sp : Spawners)
 	{
-		sp->StartSpawner(5,1);
+		sp->StartSpawner();
 	}
+	idWave++;
 }
 
 void AWavesSystem::InitSpawners()
 {
 	auto DataFromTable = DataTableForLevel->GetTableData();
 	DataFromTable.RemoveAt(0);
-	/*
+	int nbSpawner = Spawners.Num();
+	
 	for (auto FromTable : DataFromTable)
 	{
-		
-	}*/
+		if(FromTable[1] == FString::FromInt(idWave))
+		{
+			auto nbMob = FCString::Atoi(*FromTable[3]);
+			auto idMob = FCString::Atoi(*FromTable[2]);
+			
+			Spawners[nbSpawner-1]->NbToSpawn = nbMob;
+			Spawners[nbSpawner-1]->idMobIsSpawn = idMob;
+			nbSpawner--;
+		}
+	}
 }
 

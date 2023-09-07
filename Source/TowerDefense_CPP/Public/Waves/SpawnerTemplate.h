@@ -49,7 +49,7 @@ protected:
 public:
 
 	UFUNCTION(BlueprintCallable)
-	void StartSpawner(int nbMobToSpawn, int idMobToSpawn);
+	void StartSpawner();
 
 private:
 	/**

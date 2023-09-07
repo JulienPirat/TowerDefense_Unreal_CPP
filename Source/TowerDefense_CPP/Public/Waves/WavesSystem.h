@@ -29,6 +29,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	UDataTable* DataTableForLevel;
+
+	UPROPERTY(VisibleAnywhere)
+	int idWave = 1;
 	
 	/**
 	 * @brief Take message from spawner to indicate all of his mob was dead.

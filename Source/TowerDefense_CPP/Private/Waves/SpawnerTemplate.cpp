@@ -23,12 +23,10 @@ void ASpawnerTemplate::BeginPlay()
 	
 }
 
-void ASpawnerTemplate::StartSpawner(int nbMobToSpawn, int idMobToSpawn)
+void ASpawnerTemplate::StartSpawner()
 {
 	isEnable = true;
-	NbToSpawn = nbMobToSpawn;
 	NbEnemyRemaining = 0;
-	idMobIsSpawn = idMobToSpawn;
 	SpawnMob();
 }
 
