@@ -35,6 +35,13 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	int idWave = 1;
+
+	/**
+	 * @brief Get IdWave for UI.
+	 * @return IdWave
+	 */
+	UFUNCTION(BlueprintCallable)
+	FString GetIdWave();
 	
 	/**
 	 * @brief Take message from spawner to indicate all of his mob was dead.

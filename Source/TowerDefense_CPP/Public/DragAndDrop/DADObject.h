@@ -104,7 +104,13 @@ public:
 
 	UPROPERTY(EditAnywhere, Category="Niagara")
 	class UNiagaraSystem* UpgradeParticule;
-	
+
+	/**
+	 * @brief Give information for UI if we can enable upgrade button
+	 * @return True if the tower have more upgrade
+	 */
+	UFUNCTION(BlueprintCallable)
+	bool HaveNextUpgrade();
 	
 	/**
 	 * @brief Tire un Projectile en direction du forward Vector de la tourelle

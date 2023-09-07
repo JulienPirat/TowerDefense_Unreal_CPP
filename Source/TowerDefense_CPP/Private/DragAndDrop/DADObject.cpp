@@ -33,6 +33,17 @@ ADADObject::ADADObject()
 	WidgetInteraction->SetupAttachment(MeshComponent);
 
 }
+
+bool ADADObject::HaveNextUpgrade()
+{
+	bool res = false;
+	if(NbUpgrade < MiddleShield_material.Num())
+	{
+		res = true;
+	}
+	return res;
+}
+
 /**
  * @brief Tire un Projectile en direction du forward Vector de la tourelle
  */

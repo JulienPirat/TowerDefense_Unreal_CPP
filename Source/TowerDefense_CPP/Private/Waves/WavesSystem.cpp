@@ -15,6 +15,11 @@ AWavesSystem::AWavesSystem()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
+FString AWavesSystem::GetIdWave()
+{
+	return FString::FromInt(idWave);
+}
+
 void AWavesSystem::GetMessageFromSpawner()
 {
 	if(AllSpawnersAreReady())
@@ -25,6 +30,7 @@ void AWavesSystem::GetMessageFromSpawner()
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
 		{
 			GetWorld()->GetTimerManager().ClearTimer(TimerHandle); //Clear le timer pour pas faire des pertes de mémoire.
+			idWave++;
 			InitSpawners();
 			StartAllSpawners();
 		},  delayBetweenWaves, false);
@@ -79,7 +85,6 @@ void AWavesSystem::StartAllSpawners()
 	{
 		sp->StartSpawner();
 	}
-	idWave++;
 }
 
 void AWavesSystem::InitSpawners()
