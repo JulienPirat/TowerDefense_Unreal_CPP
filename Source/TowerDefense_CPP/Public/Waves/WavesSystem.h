@@ -17,7 +17,10 @@ class TOWERDEFENSE_CPP_API AWavesSystem : public AActor
 public:
 	// Sets default values for this actor's properties
 	AWavesSystem();
-	
+
+	/**
+	 * @brief List of all Spawners in the LVL
+	 */
 	UPROPERTY(BlueprintReadOnly)
 	TArray<ASpawnerTemplate*> Spawners;
 
@@ -51,7 +54,13 @@ private:
 	 */
 	bool AllSpawnersAreReady();
 
+	/**
+	 * @brief Launch all Spawner and increase idWave.
+	 */
 	void StartAllSpawners();
 
+	/**
+	 * @brief Initialize Spawners (NbMob and idMob) with DataTable values.
+	 */
 	void InitSpawners();
 };

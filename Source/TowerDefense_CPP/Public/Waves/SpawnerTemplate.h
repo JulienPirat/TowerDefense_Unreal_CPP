@@ -21,7 +21,10 @@ public:
 	UPROPERTY(EditAnywhere)
 	TMap<int,TSubclassOf<ATemplateEnemy>> MobsCanSpawn;
 
-	UPROPERTY(EditAnywhere)
+	/**
+	 * @brief Number of Mob need to Spawn
+	 */
+	UPROPERTY(VisibleAnywhere)
 	int NbToSpawn;
 
 	UPROPERTY(EditAnywhere)
@@ -30,6 +33,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	bool isEnable;
 
+	/**
+	 * @brief Number of mobs that didn't die
+	 */
 	UPROPERTY(VisibleAnywhere)
 	int NbEnemyRemaining = 0;
 
@@ -53,7 +59,7 @@ public:
 
 private:
 	/**
-	 * @brief Fonction récursive jusqu'au bon nombre de mob spawn.
+	 * @brief Recursive function until the correct number of mob spawn
 	 */
 	void SpawnMob();
 

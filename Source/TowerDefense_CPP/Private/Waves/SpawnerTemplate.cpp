@@ -31,14 +31,14 @@ void ASpawnerTemplate::StartSpawner()
 }
 
 /**
- * @brief Fonction récursive jusqu'au bon nombre de mob spawn.
+ * @brief Recursive function until the correct number of mob spawn
  */
 void ASpawnerTemplate::SpawnMob()
 {
 	if(NbToSpawn>0 && MobsCanSpawn.Num()>0)
 	{
 		//ICI Faire une vérif si le ID Existe ainsi que la liste est bien rempli
-		// Used to manage time
+		
 		FTimerHandle TimerHandle;
 		auto spawnedMob = GetWorld()->SpawnActor<ATemplateEnemy>(this->MobsCanSpawn[idMobIsSpawn],GetActorLocation(), FRotator(0,0,0));
 		spawnedMob->giveSpawner(this);
