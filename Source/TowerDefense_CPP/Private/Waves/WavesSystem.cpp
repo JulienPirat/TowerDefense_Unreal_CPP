@@ -84,19 +84,16 @@ void AWavesSystem::StartAllSpawners()
 
 void AWavesSystem::InitSpawners()
 {
-	auto DataFromTable = DataTableForLevel->GetTableData();
-	DataFromTable.RemoveAt(0);
+	TArray<FWavesDataTables*> res;
+	DataTableForLevel->GetAllRows<FWavesDataTables>("",res);
 	int nbSpawner = Spawners.Num();
 	
-	for (auto FromTable : DataFromTable)
+	for (auto FromTable : res)
 	{
-		if(FromTable[1] == FString::FromInt(idWave))
+		if(FromTable->WaveNumber == idWave)
 		{
-			auto nbMob = FCString::Atoi(*FromTable[3]);
-			auto idMob = FCString::Atoi(*FromTable[2]);
-			
-			Spawners[nbSpawner-1]->NbToSpawn = nbMob;
-			Spawners[nbSpawner-1]->idMobIsSpawn = idMob;
+			Spawners[nbSpawner-1]->NbToSpawn = FromTable->nbMobs;
+			Spawners[nbSpawner-1]->idMobIsSpawn = FromTable->mobToSpawn;
 			nbSpawner--;
 		}
 	}
